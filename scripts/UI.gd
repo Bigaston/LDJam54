@@ -1,6 +1,7 @@
 extends Control
 
 signal furniture_choosed(furniture: Furniture)
+signal check_level()
 
 func add_available_furniture(furniture: Furniture):
 	var container = $VBoxContainer
@@ -20,3 +21,7 @@ func remove_available_furniture(name: String):
 
 func _on_add_furniture_pressed(furniture: Furniture):
 	furniture_choosed.emit(furniture)
+
+
+func _on_button_pressed():
+	check_level.emit()

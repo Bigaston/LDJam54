@@ -29,4 +29,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.60821, 2.25807, 0)
 material_override = ExtResource("4_f4v77")
 mesh = SubResource("BoxMesh_foyal")
 
+[connection signal="check_level" from="UI" to="." method="_on_ui_check_level"]
 [connection signal="furniture_choosed" from="UI" to="." method="_on_ui_furniture_choosed"]

@@ -1,6 +1,6 @@
 extends Node3D
 
-const RAY_LENGTH = 10
+const RAY_LENGTH = 100
 
 @onready var selector = $Selector
 
@@ -13,6 +13,8 @@ var current_rotation = 0
 var last_frame_correct_status = null
 var cam
 var level
+
+var placed_furniture: Array[Furniture] = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -75,6 +77,8 @@ func _process(delta):
 			
 			$UI.remove_available_furniture(furniture_to_place.name)
 			
+			placed_furniture.append(furniture_to_place)
+			
 			furniture_to_place = null
 			last_frame_correct_status = null
 			
@@ -94,6 +98,10 @@ func _process(delta):
 			var furniture = collider.get_parent()
 			
 			$UI.add_available_furniture(furniture.duplicate())
+			
+			placed_furniture = placed_furniture.filter(func(fur): return fur != furniture)			
+			
+			print(placed_furniture)
 			
 			furniture.queue_free()
 		
@@ -159,3 +167,34 @@ func set_material_of_furniture(mesh, material):
 	
 	for mat in range(0, nb_materials):
 		(mesh as MeshInstance3D).set_surface_override_material(mat, material)
+
+
+func _on_ui_check_level():
+	print(is_level_completed())
+
+func is_level_completed():
+	var need_string = []
+	
+	for needed_furniture in level.needed_furnitures:
+		var state = needed_furniture.get_state() as SceneState
+		
+		for i in range(0, state.get_node_property_count(0)):
+			if state.get_node_property_name(0, i) == "display_name":
+				need_string.append(state.get_node_property_value(0, i))
+				
+	var placed_string = []
+	
+	for placed in placed_furniture:
+		placed_string.append(placed.display_name)
+	
+	need_string.sort()
+	placed_string.sort()
+	
+	if need_string.size() != placed_string.size():
+		return false
+		
+	for i in range(0, need_string.size()):
+		if need_string[i] != placed_string[i]:
+			return false
+			
+	return true

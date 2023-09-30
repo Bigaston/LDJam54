@@ -20,6 +20,7 @@ size = Vector3(10, 1, 10)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 5)
 script = ExtResource("1_08cl3")
 available_furnitures = Array[PackedScene]([ExtResource("2_d6yob"), ExtResource("3_s5hdq")])
+needed_furnitures = Array[PackedScene]([ExtResource("2_d6yob"), ExtResource("3_s5hdq")])
 
 [node name="Ground" type="MeshInstance3D" parent="."]
 mesh = SubResource("BoxMesh_3i07s")
