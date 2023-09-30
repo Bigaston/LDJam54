@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://dotcga5rmcdog"]
+
+[ext_resource type="Script" path="res://scripts/Furniture.gd" id="1_nvnw8"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_uxrcd"]
+size = Vector3(1, 2, 1)
+
+[node name="Commode" type="Node3D"]
+script = ExtResource("1_nvnw8")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("BoxMesh_uxrcd")

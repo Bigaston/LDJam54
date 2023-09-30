@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://bsx40vwlv4iex"]
+
+[ext_resource type="Script" path="res://scripts/Furniture.gd" id="1_8q0yk"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_uxrcd"]
+size = Vector3(2, 1, 1)
+
+[node name="Bed" type="Node3D"]
+script = ExtResource("1_8q0yk")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 1, 0)
+mesh = SubResource("BoxMesh_uxrcd")

@@ -1,0 +1,7 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://c5jfd0ju8gwpx"]
+
+[ext_resource type="Shader" path="res://ressources/shaders/transparent_error.gdshader" id="1_r4os0"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_r4os0")

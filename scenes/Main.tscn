@@ -1,25 +1,33 @@
-[gd_scene load_steps=8 format=3 uid="uid://dimsd71dmifu2"]
+[gd_scene load_steps=12 format=3 uid="uid://dimsd71dmifu2"]
 
 [ext_resource type="Script" path="res://scripts/main_game.gd" id="1_c54g1"]
 [ext_resource type="Script" path="res://addons/orbit_camera/orbit_camera.gd" id="1_g3h6t"]
+[ext_resource type="PackedScene" uid="uid://cmcvaxq3endno" path="res://objects/UI.tscn" id="2_jpn1h"]
+[ext_resource type="Material" uid="uid://cww4ay23o6m2h" path="res://ressources/shaders/transparent.tres" id="4_f4v77"]
+[ext_resource type="Script" path="res://scripts/Level.gd" id="4_xrbcx"]
+[ext_resource type="Texture2D" uid="uid://dr0k2axoofy2f" path="res://ressources/proto_textures/Dark/texture_03.png" id="5_f2gu7"]
 
 [sub_resource type="Environment" id="Environment_tq2d1"]
 background_mode = 1
 background_color = Color(0.968627, 0.862745, 0.435294, 1)
 
+[sub_resource type="BoxMesh" id="BoxMesh_foyal"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rg8fg"]
+albedo_texture = ExtResource("5_f2gu7")
+uv1_scale = Vector3(10, 6, 8)
+
 [sub_resource type="BoxMesh" id="BoxMesh_bdqrq"]
+material = SubResource("StandardMaterial3D_rg8fg")
 size = Vector3(10, 1, 10)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ns1np"]
 size = Vector3(10, 1, 10)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6fkwx"]
-albedo_color = Color(0.945098, 0.180392, 0, 1)
-
-[sub_resource type="BoxMesh" id="BoxMesh_foyal"]
-
 [node name="Main" type="Node3D"]
 script = ExtResource("1_c54g1")
+
+[node name="UI" parent="." instance=ExtResource("2_jpn1h")]
 
 [node name="CameraAnchor" type="Node3D" parent="."]
 
@@ -37,15 +45,23 @@ environment = SubResource("Environment_tq2d1")
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.842753, 0.5383, 0, -0.5383, 0.842753, 0, 5.20692, 4.92704)
 
-[node name="Ground" type="MeshInstance3D" parent="."]
-mesh = SubResource("BoxMesh_bdqrq")
-
-[node name="Area3D" type="Area3D" parent="Ground"]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground/Area3D"]
-shape = SubResource("BoxShape3D_ns1np")
-
 [node name="Selector" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.60821, 2.25807, 0)
-material_override = SubResource("StandardMaterial3D_6fkwx")
+material_override = ExtResource("4_f4v77")
 mesh = SubResource("BoxMesh_foyal")
+
+[node name="Level1" type="Node3D" parent="."]
+script = ExtResource("4_xrbcx")
+size_x = 10
+size_y = 10
+
+[node name="Ground" type="MeshInstance3D" parent="Level1"]
+mesh = SubResource("BoxMesh_bdqrq")
+skeleton = NodePath("../..")
+
+[node name="Area3D" type="Area3D" parent="Level1/Ground"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Level1/Ground/Area3D"]
+shape = SubResource("BoxShape3D_ns1np")
+
+[connection signal="furniture_choosed" from="UI" to="." method="_on_ui_furniture_choosed"]
