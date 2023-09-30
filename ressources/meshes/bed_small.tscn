@@ -3,3 +3,6 @@
 [ext_resource type="PackedScene" uid="uid://btjwml0db0n77" path="res://ressources/meshes/binary/bed_small.glb" id="1_efl4e"]
 
 [node name="bed_small" instance=ExtResource("1_efl4e")]
+
+[node name="LIT_var1" parent="." index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)

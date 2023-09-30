@@ -153,6 +153,9 @@ func cancel_furniture_placement():
 func set_material_of_furniture(model, material):
 	for child in model.get_children():
 		if child is MeshInstance3D:
+			if child.get_child_count() > 0:
+				set_material_of_furniture(child, material)
+			
 			var nb_materials = child.get_surface_override_material_count()
 			
 			for mat in range(0, nb_materials):
