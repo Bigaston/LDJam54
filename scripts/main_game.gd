@@ -43,53 +43,37 @@ func _process(delta):
 		cancel_furniture_placement()
 		
 	if Input.is_action_just_pressed("furniture_place"):
-		if furniture_to_place != null:
-			var mesh = furniture_to_place.get_children()
-			set_material_of_furniture(mesh[0], null)
+		if furniture_to_place != null and furniture_to_place.is_placement_valid():
+			var meshs = furniture_to_place.get_children()				
+			
+			for mesh in meshs:
+				if mesh is MeshInstance3D:
+					set_material_of_furniture(mesh, null)
 			
 			furniture_to_place = null
 			last_frame_correct_status = null
 		
 	# Check if position is correct
 	if furniture_to_place != null && selected_case != null:
-		if check_if_furniture_correct():
+		if furniture_to_place.is_placement_valid():
 			if last_frame_correct_status != true:
 				last_frame_correct_status = true
 				
-				var mesh = furniture_to_place.get_children()
+				var meshs = furniture_to_place.get_children()				
 				
-				set_material_of_furniture(mesh[0], transparent_mat)
+				for mesh in meshs:
+					if mesh is MeshInstance3D:
+						set_material_of_furniture(mesh, transparent_mat)
 		else:
 			if last_frame_correct_status != false:
 				last_frame_correct_status = false
 				
-				var mesh = furniture_to_place.get_children()
-				set_material_of_furniture(mesh[0], transparent_error_mat)
+				var meshs = furniture_to_place.get_children()
+				
+				for mesh in meshs:
+					if mesh is MeshInstance3D:
+						set_material_of_furniture(mesh, transparent_error_mat)
 		
-func check_if_furniture_correct():
-	# TODO : Remplacer par la detection native de godot
-	if furniture_to_place == null or selected_case == null:
-		return
-	
-	var rotated_size = Vector2(furniture_to_place.size_x, furniture_to_place.size_y)
-	
-	if current_rotation == 0:
-		rotated_size = Vector2(rotated_size.x - 1, rotated_size.y - 1)
-	elif current_rotation == 90:
-		rotated_size = Vector2(rotated_size.y - 1, -rotated_size.x + 1)
-	elif current_rotation == 180:
-		rotated_size = Vector2(-rotated_size.x + 1, rotated_size.y - 1)
-	elif current_rotation == 270:
-		rotated_size = Vector2(rotated_size.y - 1, rotated_size.x - 1)
-	
-	if (selected_case.x + rotated_size.x < level.size_x 
-		and selected_case.y + rotated_size.y < level.size_y
-		and selected_case.y + rotated_size.y >= 0
-		and selected_case.x + rotated_size.x >= 0):
-		return true
-	else:
-		return false 
-
 func _physics_process(delta):
 	var space_state = get_world_3d().direct_space_state
 	var cam = $Level1/CameraAnchor/OrbitCamera
