@@ -29,16 +29,6 @@ script = ExtResource("1_c54g1")
 
 [node name="UI" parent="." instance=ExtResource("2_jpn1h")]
 
-[node name="CameraAnchor" type="Node3D" parent="."]
-
-[node name="OrbitCamera" type="Camera3D" parent="CameraAnchor"]
-transform = Transform3D(1, 0, 0, 0, 0.78055, 0.625093, 0, -0.625093, 0.78055, 0, 4.82487, 4.13954)
-script = ExtResource("1_g3h6t")
-ZOOM_SPEED = 10.0
-DEFAULT_DISTANCE = 5.0
-ROTATE_SPEED = 3.0
-ANCHOR_NODE_PATH = NodePath("..")
-
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_tq2d1")
 
@@ -51,6 +41,7 @@ material_override = ExtResource("4_f4v77")
 mesh = SubResource("BoxMesh_foyal")
 
 [node name="Level1" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 5)
 script = ExtResource("4_xrbcx")
 size_x = 10
 size_y = 10
@@ -63,5 +54,15 @@ skeleton = NodePath("../..")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Level1/Ground/Area3D"]
 shape = SubResource("BoxShape3D_ns1np")
+
+[node name="CameraAnchor" type="Node3D" parent="Level1"]
+transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 0, 0, 0)
+
+[node name="OrbitCamera" type="Camera3D" parent="Level1/CameraAnchor"]
+script = ExtResource("1_g3h6t")
+ZOOM_SPEED = 10.0
+DEFAULT_DISTANCE = 5.0
+ROTATE_SPEED = 3.0
+ANCHOR_NODE_PATH = NodePath("..")
 
 [connection signal="furniture_choosed" from="UI" to="." method="_on_ui_furniture_choosed"]
