@@ -1,5 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://dimsd71dmifu2"]
+[gd_scene load_steps=8 format=3 uid="uid://dimsd71dmifu2"]
 
+[ext_resource type="Script" path="res://scripts/main_game.gd" id="1_c54g1"]
 [ext_resource type="Script" path="res://addons/orbit_camera/orbit_camera.gd" id="1_g3h6t"]
 
 [sub_resource type="Environment" id="Environment_tq2d1"]
@@ -7,16 +8,27 @@ background_mode = 1
 background_color = Color(0.968627, 0.862745, 0.435294, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_bdqrq"]
+size = Vector3(10, 1, 10)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ns1np"]
+size = Vector3(10, 1, 10)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6fkwx"]
+albedo_color = Color(0.945098, 0.180392, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_foyal"]
 
 [node name="Main" type="Node3D"]
+script = ExtResource("1_c54g1")
 
 [node name="CameraAnchor" type="Node3D" parent="."]
 
 [node name="OrbitCamera" type="Camera3D" parent="CameraAnchor"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.82487, 4.13954)
+transform = Transform3D(1, 0, 0, 0, 0.78055, 0.625093, 0, -0.625093, 0.78055, 0, 4.82487, 4.13954)
 script = ExtResource("1_g3h6t")
 ZOOM_SPEED = 10.0
 DEFAULT_DISTANCE = 5.0
+ROTATE_SPEED = 3.0
 ANCHOR_NODE_PATH = NodePath("..")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -27,3 +39,13 @@ transform = Transform3D(1, 0, 0, 0, 0.842753, 0.5383, 0, -0.5383, 0.842753, 0, 5
 
 [node name="Ground" type="MeshInstance3D" parent="."]
 mesh = SubResource("BoxMesh_bdqrq")
+
+[node name="Area3D" type="Area3D" parent="Ground"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground/Area3D"]
+shape = SubResource("BoxShape3D_ns1np")
+
+[node name="Selector" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.60821, 2.25807, 0)
+material_override = SubResource("StandardMaterial3D_6fkwx")
+mesh = SubResource("BoxMesh_foyal")
