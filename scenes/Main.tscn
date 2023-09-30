@@ -1,10 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://dimsd71dmifu2"]
+[gd_scene load_steps=7 format=3 uid="uid://dimsd71dmifu2"]
 
 [ext_resource type="Script" path="res://scripts/main_game.gd" id="1_c54g1"]
 [ext_resource type="PackedScene" uid="uid://cmcvaxq3endno" path="res://objects/UI.tscn" id="2_jpn1h"]
 [ext_resource type="Material" uid="uid://c5jfd0ju8gwpx" path="res://ressources/shaders/transparent_error.tres" id="3_l88p4"]
 [ext_resource type="Material" uid="uid://cww4ay23o6m2h" path="res://ressources/shaders/transparent.tres" id="4_f4v77"]
-[ext_resource type="PackedScene" uid="uid://bfq6qql701lp3" path="res://scenes/levels/Level1.tscn" id="6_ietw8"]
 
 [sub_resource type="Environment" id="Environment_tq2d1"]
 background_mode = 1
@@ -14,7 +13,6 @@ background_color = Color(0.968627, 0.862745, 0.435294, 1)
 
 [node name="Main" type="Node3D"]
 script = ExtResource("1_c54g1")
-level = NodePath("Level1")
 transparent_mat = ExtResource("4_f4v77")
 transparent_error_mat = ExtResource("3_l88p4")
 
@@ -30,7 +28,5 @@ transform = Transform3D(1, 0, 0, 0, 0.842753, 0.5383, 0, -0.5383, 0.842753, 0, 5
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.60821, 2.25807, 0)
 material_override = ExtResource("4_f4v77")
 mesh = SubResource("BoxMesh_foyal")
-
-[node name="Level1" parent="." instance=ExtResource("6_ietw8")]
 
 [connection signal="furniture_choosed" from="UI" to="." method="_on_ui_furniture_choosed"]

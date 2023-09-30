@@ -10,6 +10,7 @@ size = Vector3(0.8, 1.8, 0.8)
 
 [node name="Commode" type="Node3D"]
 script = ExtResource("1_nvnw8")
+display_name = "Commode"
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)

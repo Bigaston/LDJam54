@@ -20,14 +20,3 @@ offset_top = -20.0
 offset_right = 40.0
 offset_bottom = 20.0
 grow_vertical = 2
-
-[node name="AddCommode" type="Button" parent="VBoxContainer"]
-layout_mode = 2
-text = "Ajouter une commode"
-
-[node name="AddBed" type="Button" parent="VBoxContainer"]
-layout_mode = 2
-text = "Ajouter un lit"
-
-[connection signal="pressed" from="VBoxContainer/AddCommode" to="." method="_on_add_furniture_pressed" binds= ["commode"]]
-[connection signal="pressed" from="VBoxContainer/AddBed" to="." method="_on_add_furniture_pressed" binds= ["bed"]]

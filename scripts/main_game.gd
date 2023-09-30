@@ -4,7 +4,6 @@ const RAY_LENGTH = 10
 
 @onready var selector = $Selector
 
-@export_node_path var level
 @export var transparent_mat: ShaderMaterial
 @export var transparent_error_mat: ShaderMaterial
 
@@ -13,10 +12,26 @@ var furniture_to_place = null
 var current_rotation = 0
 var last_frame_correct_status = null
 var cam
+var level
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	var camera_anchor = get_node(level).get_camera_anchor()
+	load_level(load("res://scenes/levels/Level1.tscn"))
+	
+func load_level(p_level: PackedScene):
+	level = p_level.instantiate()
+	
+	add_child(level)
+	add_camera()
+	
+	var ui = $UI
+	
+	for furniture_scene in level.available_furnitures:
+		var furniture = furniture_scene.instantiate() 
+		ui.add_available_furniture(furniture)
+	
+func add_camera():
+	var camera_anchor = level.get_camera_anchor()
 	
 	cam = OrbitCamera.new(camera_anchor)
 	camera_anchor.add_child(cam)
@@ -58,6 +73,8 @@ func _process(delta):
 				if child is Area3D:
 					child.set_collision_layer_value(1, true)
 			
+			$UI.remove_available_furniture(furniture_to_place.name)
+			
 			furniture_to_place = null
 			last_frame_correct_status = null
 			
@@ -75,6 +92,8 @@ func _process(delta):
 		if !result.is_empty():
 			var collider = result.collider as Area3D
 			var furniture = collider.get_parent()
+			
+			$UI.add_available_furniture(furniture.duplicate())
 			
 			furniture.queue_free()
 		
@@ -120,7 +139,7 @@ func _physics_process(delta):
 func _on_ui_furniture_choosed(furniture):
 	cancel_furniture_placement()
 	
-	furniture_to_place = furniture
+	furniture_to_place = furniture.duplicate()
 	
 	for child in furniture_to_place.get_children():
 		if child is Area3D:

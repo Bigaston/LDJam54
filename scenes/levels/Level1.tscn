@@ -1,7 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://bfq6qql701lp3"]
+[gd_scene load_steps=8 format=3 uid="uid://bfq6qql701lp3"]
 
 [ext_resource type="Script" path="res://scripts/Level.gd" id="1_08cl3"]
+[ext_resource type="PackedScene" uid="uid://bsx40vwlv4iex" path="res://objects/furnitures/Bed.tscn" id="2_d6yob"]
 [ext_resource type="Texture2D" uid="uid://dr0k2axoofy2f" path="res://ressources/proto_textures/Dark/texture_03.png" id="2_udru1"]
+[ext_resource type="PackedScene" uid="uid://dotcga5rmcdog" path="res://objects/furnitures/Commode.tscn" id="3_s5hdq"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rg8fg"]
 albedo_texture = ExtResource("2_udru1")
@@ -17,6 +19,7 @@ size = Vector3(10, 1, 10)
 [node name="Level1" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 5)
 script = ExtResource("1_08cl3")
+available_furnitures = Array[PackedScene]([ExtResource("2_d6yob"), ExtResource("3_s5hdq")])
 
 [node name="Ground" type="MeshInstance3D" parent="."]
 mesh = SubResource("BoxMesh_3i07s")
