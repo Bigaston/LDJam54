@@ -3,8 +3,8 @@ extends Node3D
 const RAY_LENGTH = 10
 
 @onready var selector = $Selector
-@onready var level = $Level1
 
+@export_node_path var level
 @export var transparent_mat: ShaderMaterial
 @export var transparent_error_mat: ShaderMaterial
 
@@ -12,10 +12,14 @@ var selected_case = Vector2(0, 0)
 var furniture_to_place = null
 var current_rotation = 0
 var last_frame_correct_status = null
+var cam
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass
+	var camera_anchor = get_node(level).get_camera_anchor()
+	
+	cam = OrbitCamera.new(camera_anchor)
+	camera_anchor.add_child(cam)
 	
 func _process(delta):
 	# Visible position of the furniture
@@ -76,12 +80,11 @@ func _process(delta):
 		
 func _physics_process(delta):
 	var space_state = get_world_3d().direct_space_state
-	var cam = $Level1/CameraAnchor/OrbitCamera
 	var mousepos = get_viewport().get_mouse_position()
 
 	var origin = cam.project_ray_origin(mousepos)
 	var end = origin + cam.project_ray_normal(mousepos) * RAY_LENGTH
-	var query = PhysicsRayQueryParameters3D.create(origin, end)
+	var query = PhysicsRayQueryParameters3D.create(origin, end, 0b00000000_00000000_00000000_00000010)
 	query.collide_with_areas = true
 
 	var result = space_state.intersect_ray(query)

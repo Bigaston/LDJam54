@@ -1,10 +1,11 @@
 extends Camera3D
+class_name OrbitCamera
 
 # External var
-@export var SCROLL_SPEED: float = 10 # Speed when use scroll mouse
+@export var SCROLL_SPEED: float = 20 # Speed when use scroll mouse
 @export var ZOOM_SPEED: float = 5 # Speed use when is_zoom_in or is_zoom_out is true
-@export var DEFAULT_DISTANCE: float = 20 # Default distance of the Node
-@export var ROTATE_SPEED: float = 10
+@export var DEFAULT_DISTANCE: float = 10 # Default distance of the Node
+@export var ROTATE_SPEED: float = 5
 @export var ANCHOR_NODE_PATH: NodePath
 @export var MOUSE_ZOOM_SPEED: float = 10
 
@@ -22,9 +23,9 @@ var _rotation: Vector3
 var _distance: float
 var _anchor_node: Node3D
 
-func _ready():
-	_distance = DEFAULT_DISTANCE
-	_anchor_node = self.get_node(ANCHOR_NODE_PATH)
+func _init(anchor):
+	_distance = DEFAULT_DISTANCE	
+	_anchor_node = anchor
 	_rotation = _anchor_node.transform.basis.get_rotation_quaternion().get_euler()
 
 func _process(delta: float):
