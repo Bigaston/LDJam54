@@ -22,6 +22,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 5)
 script = ExtResource("1_08cl3")
 available_furnitures = Array[PackedScene]([ExtResource("2_1u7m7"), ExtResource("3_xiky8"), ExtResource("4_0idya")])
 needed_furnitures = Array[PackedScene]([ExtResource("2_1u7m7")])
+map = "res://scenes/levels/level1.map.txt"
 
 [node name="Ground" type="MeshInstance3D" parent="."]
 mesh = SubResource("BoxMesh_3i07s")

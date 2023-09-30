@@ -6,6 +6,7 @@ const RAY_LENGTH = 100
 
 @export var transparent_mat: ShaderMaterial
 @export var transparent_error_mat: ShaderMaterial
+@export var debug_case: PackedScene
 
 var selected_case = Vector2(0, 0)
 var furniture_to_place = null
@@ -161,9 +162,35 @@ func set_material_of_furniture(model, material):
 			for mat in range(0, nb_materials):
 				child.set_surface_override_material(mat, material)
 
-
 func _on_ui_check_level():
 	print(is_level_completed())
+	check_level_cases()
+
+func check_level_cases():
+	var file_access = FileAccess.open(level.map, FileAccess.READ)
+	print(file_access.get_as_text())
+	
+	var lines = file_access.get_as_text().split("\n")
+	
+	for line in range(0, lines.size()):
+		if lines[line] == "":
+			continue
+		
+		var columns = lines[line].split("")
+		
+		for col in range(0, columns.size()):
+			var char = columns[col]
+			
+			var case = debug_case.instantiate()
+			
+			case.position.x = col
+			case.position.y = 0.5
+			case.position.z = line
+			
+			add_child(case)
+			
+			if char == "*":
+				pass
 
 func is_level_completed():
 	var need_string = []
