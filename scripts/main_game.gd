@@ -65,11 +65,7 @@ func _process(delta):
 		
 	if Input.is_action_just_pressed("furniture_place"):
 		if furniture_to_place != null and furniture_to_place.is_placement_valid():
-			var meshs = furniture_to_place.get_children()				
-			
-			for mesh in meshs:
-				if mesh is MeshInstance3D:
-					set_material_of_furniture(mesh, null)
+			set_material_of_furniture(furniture_to_place.get_node("Model"), null)
 			
 			for child in furniture_to_place.get_children():
 				if child is Area3D:
@@ -111,20 +107,12 @@ func _process(delta):
 			if last_frame_correct_status != true:
 				last_frame_correct_status = true
 				
-				var meshs = furniture_to_place.get_children()				
-				
-				for mesh in meshs:
-					if mesh is MeshInstance3D:
-						set_material_of_furniture(mesh, transparent_mat)
+				set_material_of_furniture(furniture_to_place.get_node("Model"), transparent_mat)
 		else:
 			if last_frame_correct_status != false:
 				last_frame_correct_status = false
 				
-				var meshs = furniture_to_place.get_children()
-				
-				for mesh in meshs:
-					if mesh is MeshInstance3D:
-						set_material_of_furniture(mesh, transparent_error_mat)
+				set_material_of_furniture(furniture_to_place.get_node("Model"), transparent_error_mat)
 		
 func _physics_process(delta):
 	var space_state = get_world_3d().direct_space_state
@@ -162,11 +150,13 @@ func cancel_furniture_placement():
 		furniture_to_place.queue_free()
 		furniture_to_place = null
 
-func set_material_of_furniture(mesh, material):
-	var nb_materials = mesh.get_surface_override_material_count()
-	
-	for mat in range(0, nb_materials):
-		(mesh as MeshInstance3D).set_surface_override_material(mat, material)
+func set_material_of_furniture(model, material):
+	for child in model.get_children():
+		if child is MeshInstance3D:
+			var nb_materials = child.get_surface_override_material_count()
+			
+			for mat in range(0, nb_materials):
+				child.set_surface_override_material(mat, material)
 
 
 func _on_ui_check_level():

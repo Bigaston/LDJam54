@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://cyt5owtf8d0cj"]
+
+[ext_resource type="Script" path="res://scripts/Furniture.gd" id="1_psth2"]
+[ext_resource type="PackedScene" uid="uid://dv14bbadsnhax" path="res://ressources/meshes/fauteuil.tscn" id="2_gkydo"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_8s3ay"]
+size = Vector3(1.8, 0.8, 1.8)
+
+[node name="Armchair" type="Node3D"]
+script = ExtResource("1_psth2")
+display_name = "Armchair"
+
+[node name="Model" parent="." instance=ExtResource("2_gkydo")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0.5, 1, 0.5)
+
+[node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0.5, 0.5)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("BoxShape3D_8s3ay")
