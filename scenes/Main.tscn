@@ -1,8 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://dimsd71dmifu2"]
+[gd_scene load_steps=13 format=3 uid="uid://dimsd71dmifu2"]
 
 [ext_resource type="Script" path="res://scripts/main_game.gd" id="1_c54g1"]
 [ext_resource type="Script" path="res://addons/orbit_camera/orbit_camera.gd" id="1_g3h6t"]
 [ext_resource type="PackedScene" uid="uid://cmcvaxq3endno" path="res://objects/UI.tscn" id="2_jpn1h"]
+[ext_resource type="Material" uid="uid://c5jfd0ju8gwpx" path="res://ressources/shaders/transparent_error.tres" id="3_l88p4"]
 [ext_resource type="Material" uid="uid://cww4ay23o6m2h" path="res://ressources/shaders/transparent.tres" id="4_f4v77"]
 [ext_resource type="Script" path="res://scripts/Level.gd" id="4_xrbcx"]
 [ext_resource type="Texture2D" uid="uid://dr0k2axoofy2f" path="res://ressources/proto_textures/Dark/texture_03.png" id="5_f2gu7"]
@@ -26,6 +27,8 @@ size = Vector3(10, 1, 10)
 
 [node name="Main" type="Node3D"]
 script = ExtResource("1_c54g1")
+transparent_mat = ExtResource("4_f4v77")
+transparent_error_mat = ExtResource("3_l88p4")
 
 [node name="UI" parent="." instance=ExtResource("2_jpn1h")]
 

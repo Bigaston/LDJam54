@@ -5,9 +5,13 @@ const RAY_LENGTH = 10
 @onready var selector = $Selector
 @onready var level = $Level1
 
+@export var transparent_mat: ShaderMaterial
+@export var transparent_error_mat: ShaderMaterial
+
 var selected_case = Vector2(0, 0)
 var furniture_to_place = null
 var current_rotation = 0
+var last_frame_correct_status = null
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -37,9 +41,28 @@ func _process(delta):
 		
 	# Check if position is correct
 	if furniture_to_place != null && selected_case != null:
-		print(check_if_furniture_outside())
+		if check_if_furniture_correct():
+			if last_frame_correct_status != true:
+				last_frame_correct_status = true
+				
+				var mesh = furniture_to_place.get_children()
+				
+				var nb_materials = mesh[0].get_surface_override_material_count()
+				
+				for mat in range(0, nb_materials):
+					(mesh[0] as MeshInstance3D).set_surface_override_material(mat, transparent_mat)
+		else:
+			if last_frame_correct_status != false:
+				last_frame_correct_status = false
+				
+				var mesh = furniture_to_place.get_children()
+				
+				var nb_materials = mesh[0].get_surface_override_material_count()
+				
+				for mat in range(0, nb_materials):
+					(mesh[0] as MeshInstance3D).set_surface_override_material(mat, transparent_error_mat)
 		
-func check_if_furniture_outside():
+func check_if_furniture_correct():
 	if furniture_to_place == null or selected_case == null:
 		return
 	
@@ -54,15 +77,13 @@ func check_if_furniture_outside():
 	elif current_rotation == 270:
 		rotated_size = Vector2(rotated_size.y - 1, rotated_size.x - 1)
 	
-	print(str(current_rotation) + " " + str(rotated_size.x) + " " + str(rotated_size.y))
-	
-	if (selected_case.x + rotated_size.x <= level.size_x 
-		and selected_case.y + rotated_size.y <= level.size_y
+	if (selected_case.x + rotated_size.x < level.size_x 
+		and selected_case.y + rotated_size.y < level.size_y
 		and selected_case.y + rotated_size.y >= 0
 		and selected_case.x + rotated_size.x >= 0):
-		return false
+		return true
 	else:
-		return true 
+		return false 
 
 func _physics_process(delta):
 	var space_state = get_world_3d().direct_space_state
