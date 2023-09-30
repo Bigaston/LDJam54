@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://dimsd71dmifu2"]
+
+[ext_resource type="Script" path="res://addons/orbit_camera/orbit_camera.gd" id="1_g3h6t"]
+
+[sub_resource type="Environment" id="Environment_tq2d1"]
+background_mode = 1
+background_color = Color(0.968627, 0.862745, 0.435294, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_bdqrq"]
+
+[node name="Main" type="Node3D"]
+
+[node name="CameraAnchor" type="Node3D" parent="."]
+
+[node name="OrbitCamera" type="Camera3D" parent="CameraAnchor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.82487, 4.13954)
+script = ExtResource("1_g3h6t")
+ZOOM_SPEED = 10.0
+DEFAULT_DISTANCE = 5.0
+ANCHOR_NODE_PATH = NodePath("..")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_tq2d1")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.842753, 0.5383, 0, -0.5383, 0.842753, 0, 5.20692, 4.92704)
+
+[node name="Ground" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_bdqrq")

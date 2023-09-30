@@ -11,8 +11,13 @@ config_version=5
 [application]
 
 config/name="LDJam54"
+run/main_scene="res://scenes/Main.tscn"
 config/features=PackedStringArray("4.1", "Mobile")
 config/icon="res://icon.svg"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/orbit_camera/plugin.cfg")
 
 [rendering]
 
