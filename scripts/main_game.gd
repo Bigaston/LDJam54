@@ -54,8 +54,29 @@ func _process(delta):
 				if mesh is MeshInstance3D:
 					set_material_of_furniture(mesh, null)
 			
+			for child in furniture_to_place.get_children():
+				if child is Area3D:
+					child.set_collision_layer_value(1, true)
+			
 			furniture_to_place = null
 			last_frame_correct_status = null
+			
+	if Input.is_action_just_pressed("furniture_delete"):
+		var space_state = get_world_3d().direct_space_state
+		var mousepos = get_viewport().get_mouse_position()
+
+		var origin = cam.project_ray_origin(mousepos)
+		var end = origin + cam.project_ray_normal(mousepos) * RAY_LENGTH
+		var query = PhysicsRayQueryParameters3D.create(origin, end, 0b00000000_00000000_00000000_00000001)
+		query.collide_with_areas = true
+
+		var result = space_state.intersect_ray(query)
+		
+		if !result.is_empty():
+			var collider = result.collider as Area3D
+			var furniture = collider.get_parent()
+			
+			furniture.queue_free()
 		
 	# Check if position is correct
 	if furniture_to_place != null && selected_case != null:
@@ -100,6 +121,11 @@ func _on_ui_furniture_choosed(furniture):
 	cancel_furniture_placement()
 	
 	furniture_to_place = furniture
+	
+	for child in furniture_to_place.get_children():
+		if child is Area3D:
+			child.set_collision_layer_value(1, false)
+	
 	add_child(furniture_to_place)
 
 func cancel_furniture_placement():
