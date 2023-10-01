@@ -1,0 +1,53 @@
+[gd_scene load_steps=6 format=3 uid="uid://5o4wbclk7vcx"]
+
+[ext_resource type="Script" path="res://scripts/ScoreModal.gd" id="1_m68gp"]
+[ext_resource type="LabelSettings" uid="uid://bx3aogh0842ot" path="res://ressources/fonts/title.tres" id="1_yw8bb"]
+[ext_resource type="LabelSettings" uid="uid://brvb2su0yfhqu" path="res://ressources/fonts/text.tres" id="2_snkyk"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_psjly"]
+bg_color = Color(1, 1, 1, 1)
+
+[sub_resource type="Theme" id="Theme_xq0t8"]
+Panel/styles/panel = SubResource("StyleBoxFlat_psjly")
+
+[node name="ScoreModal" type="Panel"]
+custom_minimum_size = Vector2(450, 200)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.0
+offset_right = 150.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_xq0t8")
+script = ExtResource("1_m68gp")
+label_settings = ExtResource("2_snkyk")
+
+[node name="Container" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Title" type="Label" parent="Container"]
+layout_mode = 2
+text = "Level Finished!"
+label_settings = ExtResource("1_yw8bb")
+horizontal_alignment = 1
+
+[node name="ScoreTitle" type="Label" parent="Container"]
+layout_mode = 2
+text = "Score :"
+label_settings = ExtResource("2_snkyk")
+horizontal_alignment = 1
+
+[node name="BackToMenu" type="Button" parent="Container"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Next Level"
+
+[connection signal="pressed" from="Container/BackToMenu" to="." method="_on_back_to_menu_pressed"]
