@@ -11,6 +11,7 @@ const RAY_LENGTH = 100
 
 var selected_case = Vector2(0, 0)
 var furniture_to_place = null
+var furniture_to_plate_button = null
 var current_rotation = 0
 var last_frame_correct_status = null
 var cam
@@ -134,12 +135,13 @@ func _process(delta):
 				if child is Area3D:
 					child.set_collision_layer_value(1, true)
 			
-			$UI.remove_available_furniture(furniture_to_place.display_name)
+			furniture_to_plate_button.queue_free()
 			
 			placed_furniture.append(furniture_to_place)
 			
 			furniture_to_place = null
 			last_frame_correct_status = null
+			
 			update_completed_goal()
 			
 	if Input.is_action_just_pressed("furniture_delete"):
@@ -160,8 +162,6 @@ func _process(delta):
 			$UI.add_available_furniture(furniture.duplicate())
 			
 			placed_furniture = placed_furniture.filter(func(fur): return fur != furniture)			
-			
-			print(placed_furniture)
 			
 			furniture.queue_free()
 			update_completed_goal()
@@ -197,8 +197,9 @@ func _physics_process(delta):
 		
 		selected_case = Vector2(round(found_position.x), round(found_position.z))		
 
-func _on_ui_furniture_choosed(furniture):
+func _on_ui_furniture_choosed(furniture, button):
 	cancel_furniture_placement()
+	furniture_to_plate_button = button
 	
 	furniture_to_place = furniture.duplicate()
 	
