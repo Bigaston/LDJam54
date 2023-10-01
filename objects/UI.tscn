@@ -50,8 +50,9 @@ text = "Mandatory Furnitures"
 label_settings = SubResource("LabelSettings_8bw56")
 horizontal_alignment = 1
 
-[node name="Button" type="Button" parent="ScrollContainer/TaskContainer"]
+[node name="FinishLevelButton" type="Button" parent="ScrollContainer/TaskContainer"]
 layout_mode = 2
-text = "Vérifier"
+disabled = true
+text = "Finish Level"
 
-[connection signal="pressed" from="ScrollContainer/TaskContainer/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="ScrollContainer/TaskContainer/FinishLevelButton" to="." method="_on_finish_level_button_pressed"]
