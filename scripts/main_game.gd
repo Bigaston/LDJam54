@@ -163,6 +163,9 @@ func _process(delta):
 		cancel_furniture_placement()
 		
 	if Input.is_action_just_pressed("furniture_place"):
+		if selected_case == null:
+			return
+		
 		if furniture_to_place != null and furniture_to_place.is_placement_valid():
 			set_material_of_furniture(furniture_to_place.get_node("Model"), null)
 			
