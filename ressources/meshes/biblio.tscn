@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://d3obdqmouix2p"]
+
+[ext_resource type="PackedScene" uid="uid://bfjvh2n5juggu" path="res://ressources/meshes/binary/biblio.glb" id="1_pl6oi"]
+
+[node name="biblio" instance=ExtResource("1_pl6oi")]
