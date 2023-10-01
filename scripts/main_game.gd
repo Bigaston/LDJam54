@@ -8,6 +8,7 @@ const RAY_LENGTH = 100
 @export var transparent_error_mat: ShaderMaterial
 @export var debug_case: PackedScene
 @export var ground: PackedScene
+@export var current_level: Level
 
 var selected_case = Vector2(0, 0)
 var furniture_to_place = null
@@ -21,7 +22,7 @@ var placed_furniture: Array[Furniture] = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	load_level(load("res://ressources/levels/Level1.tres"))
+	load_level(current_level)
 	
 func load_level(p_level: Level):
 	level = p_level
