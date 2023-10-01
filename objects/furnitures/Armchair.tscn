@@ -12,10 +12,10 @@ display_name = "Armchair"
 characteristics = Array[int]([2])
 
 [node name="Model" parent="." instance=ExtResource("2_gkydo")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 1, 1, 0.5)
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0.9, 1, 0.5)
 
 [node name="Area3D" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7, 0.5, 0.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0.5, 0.5)
 collision_mask = 13
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
