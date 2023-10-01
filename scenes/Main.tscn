@@ -6,11 +6,14 @@
 [ext_resource type="Material" uid="uid://cww4ay23o6m2h" path="res://ressources/shaders/transparent.tres" id="4_f4v77"]
 [ext_resource type="PackedScene" uid="uid://4opaa4e07qep" path="res://objects/Marker.tscn" id="4_ogku5"]
 [ext_resource type="PackedScene" uid="uid://cibyu72gqcrwh" path="res://objects/SquareGround.tscn" id="5_6hgqy"]
-[ext_resource type="Resource" uid="uid://bs7lvmjefgabh" path="res://ressources/levels/Level1.tres" id="6_4717v"]
+[ext_resource type="Resource" uid="uid://d4ku4fflnfkql" path="res://ressources/levels/Level2.tres" id="6_p71nh"]
 
 [sub_resource type="Environment" id="Environment_tq2d1"]
 background_mode = 1
-background_color = Color(0.968627, 0.862745, 0.435294, 1)
+background_color = Color(0.945098, 0.513726, 0.894118, 1)
+ambient_light_source = 2
+ambient_light_color = Color(0, 0.462745, 0.690196, 1)
+reflected_light_source = 1
 
 [sub_resource type="BoxMesh" id="BoxMesh_foyal"]
 
@@ -20,7 +23,7 @@ transparent_mat = ExtResource("4_f4v77")
 transparent_error_mat = ExtResource("3_l88p4")
 debug_case = ExtResource("4_ogku5")
 ground = ExtResource("5_6hgqy")
-current_level = ExtResource("6_4717v")
+current_level = ExtResource("6_p71nh")
 
 [node name="UI" parent="." instance=ExtResource("2_jpn1h")]
 

@@ -4,7 +4,7 @@ class_name OrbitCamera
 # External var
 @export var SCROLL_SPEED: float = 20 # Speed when use scroll mouse
 @export var ZOOM_SPEED: float = 5 # Speed use when is_zoom_in or is_zoom_out is true
-@export var DEFAULT_DISTANCE: float = 10 # Default distance of the Node
+@export var DEFAULT_DISTANCE: float = 6 # Default distance of the Node
 @export var ROTATE_SPEED: float = 5
 @export var ANCHOR_NODE_PATH: NodePath
 @export var MOUSE_ZOOM_SPEED: float = 10

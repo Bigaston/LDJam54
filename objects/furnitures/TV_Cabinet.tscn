@@ -1,7 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://cmoq26rok7j16"]
+[gd_scene load_steps=4 format=3 uid="uid://t0rbxo0v80kx"]
 
 [ext_resource type="Script" path="res://scripts/Furniture.gd" id="1_d8is8"]
-[ext_resource type="PackedScene" uid="uid://blhnt26irxfl" path="res://ressources/meshes/tele.tscn" id="2_orpgr"]
+[ext_resource type="PackedScene" path="res://ressources/meshes/tele.tscn" id="2_orpgr"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_8s3ay"]
 size = Vector3(0.8, 0.8, 2.8)
@@ -9,7 +9,7 @@ size = Vector3(0.8, 0.8, 2.8)
 [node name="Bed Big" type="Node3D"]
 script = ExtResource("1_d8is8")
 display_name = "TV Cabinet"
-characteristics = Array[int]([3, 6])
+characteristics = Array[int]([6])
 
 [node name="Model" parent="." instance=ExtResource("2_orpgr")]
 transform = Transform3D(1.8, 0, 0, 0, 1.8, 0, 0, 0, 1.8, 0, 0.9, 1)
