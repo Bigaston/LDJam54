@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://b4eqpo3mmms16"]
+
+[ext_resource type="PackedScene" uid="uid://cybbvk7dejatv" path="res://ressources/meshes/binary/placard_big.glb" id="1_5k6lw"]
+
+[node name="placard_big" instance=ExtResource("1_5k6lw")]
+
+[node name="placard_v2" parent="." index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
