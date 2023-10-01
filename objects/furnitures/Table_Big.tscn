@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://clcvo4tgl7u3v"]
+
+[ext_resource type="Script" path="res://scripts/Furniture.gd" id="1_jocoa"]
+[ext_resource type="PackedScene" uid="uid://cw8iwknblafpa" path="res://ressources/meshes/table_big.tscn" id="2_prnda"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_8s3ay"]
+size = Vector3(0.8, 0.8, 1.8)
+
+[node name="Bed" type="Node3D"]
+script = ExtResource("1_jocoa")
+display_name = "Big Table"
+
+[node name="Model" parent="." instance=ExtResource("2_prnda")]
+transform = Transform3D(1.7, 0, 0, 0, 1.7, 0, 0, 0, 1.7, 0, 0.5, 0.5)
+
+[node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0.5)
+collision_mask = 5
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("BoxShape3D_8s3ay")

@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://cjor1al8vwq6m"]
+
+[ext_resource type="PackedScene" uid="uid://cqoc6wcqd6qyp" path="res://ressources/meshes/binary/table_v2.glb" id="1_ftf6b"]
+
+[node name="table_v2" instance=ExtResource("1_ftf6b")]
+
+[node name="table_var2" parent="." index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
