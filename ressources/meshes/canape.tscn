@@ -3,6 +3,3 @@
 [ext_resource type="PackedScene" uid="uid://c4hugooyf2en5" path="res://ressources/meshes/binary/canape.glb" id="1_ngljh"]
 
 [node name="canape" instance=ExtResource("1_ngljh")]
-
-[node name="Canape_var1" parent="." index="0"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
