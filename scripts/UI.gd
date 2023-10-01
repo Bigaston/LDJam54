@@ -1,7 +1,7 @@
 extends Control
 
 signal furniture_choosed(furniture: Furniture, button: Button)
-signal check_level()
+signal finish_level()
 
 func add_available_furniture(furniture: Furniture):
 	var container = $VBoxContainer
@@ -33,6 +33,10 @@ func set_need_fullfill(need: String, filled: bool):
 		text.text = "✔️" + need
 	else:
 		text.text = "❌" + need
+		
+func set_level_finishable(value: bool):
+	$ScrollContainer/TaskContainer/FinishLevelButton.disabled = !value
 
-func _on_button_pressed():
-	check_level.emit()
+
+func _on_finish_level_button_pressed():
+	finish_level.emit()

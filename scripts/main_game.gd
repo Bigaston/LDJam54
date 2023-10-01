@@ -18,6 +18,8 @@ var last_frame_correct_status = null
 var cam
 var level: Level
 
+var placed_markers = []
+
 var placed_furniture: Array[Furniture] = []
 
 # Called when the node enters the scene tree for the first time.
@@ -54,8 +56,11 @@ func load_level(p_level: Level):
 			case.position.x = col
 			case.position.y = 0.5
 			case.position.z = line
+			case.grid_position = Vector2(col, line)
 			
 			add_child(case)
+			
+			placed_markers.append(case)
 			
 			# TODO: Replace avec un bon moyen de compter x2
 			if char == "*" or char == "$":
@@ -64,8 +69,15 @@ func load_level(p_level: Level):
 				ground_instance.position = Vector3(col, 0, line)
 				
 				add_child(ground_instance)
+				
+				if char == "*":
+					case.type = Marker.MarkerType.GROUND
+				if char == "$":
+					case.type = Marker.MarkerType.GROUND_SUPER
 			elif char == "x":
 				case.get_node("Area3D").set_collision_layer_value(3, true)
+				case.get_node("Area3D").set_collision_layer_value(4, false)
+				case.type = Marker.MarkerType.WALL
 	
 	# Camera
 	var camera_anchor_parent = Node3D.new()
@@ -141,6 +153,11 @@ func _process(delta):
 			
 			placed_furniture.append(furniture_to_place)
 			
+			var markers = furniture_to_place.get_markers()
+			
+			for marker in markers:
+				marker.get_parent().occuped = true
+			
 			furniture_to_place = null
 			last_frame_correct_status = null
 			
@@ -160,6 +177,11 @@ func _process(delta):
 		if !result.is_empty():
 			var collider = result.collider as Area3D
 			var furniture = collider.get_parent()
+			
+			var markers = furniture.get_markers()
+			
+			for marker in markers:
+				marker.get_parent().occuped = true
 			
 			$UI.add_available_furniture(furniture.duplicate())
 			
@@ -229,8 +251,16 @@ func set_material_of_furniture(model, material):
 			for mat in range(0, nb_materials):
 				child.set_surface_override_material(mat, material)
 
-func _on_ui_check_level():
-	print(update_completed_goal())
+func _on_ui_finish_level():
+	var nb_case_empty = 0
+	
+	if update_completed_goal():
+		for marker in placed_markers:
+			if ((marker.type == Marker.MarkerType.GROUND or marker.type == Marker.MarkerType.GROUND_SUPER) 
+				and !marker.occuped):
+				nb_case_empty+=1
+	
+	print(nb_case_empty)
 
 
 func update_completed_goal():
@@ -242,8 +272,6 @@ func update_completed_goal():
 		else:
 			needed_characs[charac] = 1
 			
-	print(needed_characs)
-	
 	var placed_characs := {}
 	
 	for furniture in placed_furniture:
@@ -252,8 +280,6 @@ func update_completed_goal():
 				placed_characs[charac] += 1
 			else:
 				placed_characs[charac] = 1
-				
-	print(placed_characs)
 	
 	var number_of_fulfill = 0
 	
@@ -267,4 +293,9 @@ func update_completed_goal():
 		else:
 			$UI.set_need_fullfill(string, false)
 			
-	return number_of_fulfill >= needed_characs.keys().size()
+	var valide_level = number_of_fulfill >= needed_characs.keys().size()
+	
+	$UI.set_level_finishable(valide_level)
+	
+	return valide_level
+	
