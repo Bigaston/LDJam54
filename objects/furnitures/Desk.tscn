@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://bkbb5o2ojajxj"]
+
+[ext_resource type="Script" path="res://scripts/Furniture.gd" id="1_8cuty"]
+[ext_resource type="PackedScene" uid="uid://dbrp0xo6us2m3" path="res://ressources/meshes/bureau.tscn" id="2_4yt38"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_8s3ay"]
+size = Vector3(2.8, 0.8, 0.8)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_c4f01"]
+size = Vector3(0.8, 0.8, 1.8)
+
+[node name="Bed Big" type="Node3D"]
+script = ExtResource("1_8cuty")
+display_name = "Desk"
+characteristics = Array[int]([4])
+
+[node name="Model" parent="." instance=ExtResource("2_4yt38")]
+transform = Transform3D(-8.74228e-08, 0, 2, 0, 2, 0, -2, 0, -8.74228e-08, 1, 1.05, 0)
+
+[node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0.5, 0)
+collision_mask = 5
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("BoxShape3D_8s3ay")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0.5)
+shape = SubResource("BoxShape3D_c4f01")

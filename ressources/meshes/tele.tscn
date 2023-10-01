@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://blhnt26irxfl"]
+
+[ext_resource type="PackedScene" uid="uid://mb3ogkqk31i0" path="res://ressources/meshes/binary/tele.glb" id="1_unwl3"]
+
+[node name="tele" instance=ExtResource("1_unwl3")]

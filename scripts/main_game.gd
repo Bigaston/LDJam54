@@ -57,7 +57,8 @@ func load_level(p_level: Level):
 			
 			add_child(case)
 			
-			if char == "*":
+			# TODO: Replace avec un bon moyen de compter x2
+			if char == "*" or char == "$":
 				var ground_instance = ground.instantiate()
 				
 				ground_instance.position = Vector3(col, 0, line)

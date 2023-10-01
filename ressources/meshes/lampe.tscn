@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://d0aaufowxxjov"]
+
+[ext_resource type="PackedScene" uid="uid://din4png1yri1w" path="res://ressources/meshes/binary/lampe.glb" id="1_ptyql"]
+
+[node name="lampe" instance=ExtResource("1_ptyql")]
+
+[node name="Lampe" parent="." index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)

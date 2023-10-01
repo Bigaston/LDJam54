@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://dbrp0xo6us2m3"]
+
+[ext_resource type="PackedScene" uid="uid://b7ldw77kpcd8h" path="res://ressources/meshes/binary/bureau.glb" id="1_03ep5"]
+
+[node name="bureau" instance=ExtResource("1_03ep5")]
