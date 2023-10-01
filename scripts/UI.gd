@@ -7,8 +7,8 @@ func add_available_furniture(furniture: Furniture):
 	var container = $VBoxContainer
 	
 	var button = Button.new()
-	button.text = furniture.name
-	button.name = furniture.name
+	button.text = furniture.display_name
+	button.name = furniture.display_name
 	
 	button.pressed.connect(_on_add_furniture_pressed.bind(furniture))
 	
@@ -21,7 +21,6 @@ func remove_available_furniture(name: String):
 
 func _on_add_furniture_pressed(furniture: Furniture):
 	furniture_choosed.emit(furniture)
-
 
 func _on_button_pressed():
 	check_level.emit()

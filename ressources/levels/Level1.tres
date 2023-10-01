@@ -1,9 +1,14 @@
-[gd_resource type="Resource" script_class="Level" load_steps=2 format=3 uid="uid://bs7lvmjefgabh"]
+[gd_resource type="Resource" script_class="Level" load_steps=7 format=3 uid="uid://bs7lvmjefgabh"]
 
+[ext_resource type="PackedScene" uid="uid://dxtbeq7l3mpwo" path="res://objects/furnitures/Table_Small.tscn" id="1_6wqor"]
 [ext_resource type="Script" path="res://scripts/Level.gd" id="1_dxxv6"]
+[ext_resource type="PackedScene" uid="uid://clcvo4tgl7u3v" path="res://objects/furnitures/Table_Big.tscn" id="2_acj7i"]
+[ext_resource type="PackedScene" uid="uid://na7tsji6c6l5" path="res://objects/furnitures/Bed_Small.tscn" id="3_0dy3o"]
+[ext_resource type="PackedScene" uid="uid://bb22ga2nchga0" path="res://objects/furnitures/Bed_Big.tscn" id="4_xrnn2"]
+[ext_resource type="PackedScene" uid="uid://cyt5owtf8d0cj" path="res://objects/furnitures/Armchair.tscn" id="5_bdnwo"]
 
 [resource]
 script = ExtResource("1_dxxv6")
-available_furnitures = Array[PackedScene]([])
-needed_furnitures = Array[PackedScene]([])
+available_furnitures = Array[PackedScene]([ExtResource("1_6wqor"), ExtResource("2_acj7i"), ExtResource("3_0dy3o"), ExtResource("4_xrnn2"), ExtResource("5_bdnwo")])
+needed_furnitures = Array[int]([0, 1, 2, 2, 3])
 map = "res://ressources/levels/level1.map.txt"

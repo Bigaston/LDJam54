@@ -113,7 +113,7 @@ func _process(delta):
 				if child is Area3D:
 					child.set_collision_layer_value(1, true)
 			
-			$UI.remove_available_furniture(furniture_to_place.name)
+			$UI.remove_available_furniture(furniture_to_place.display_name)
 			
 			placed_furniture.append(furniture_to_place)
 			
@@ -208,28 +208,29 @@ func _on_ui_check_level():
 
 
 func is_level_completed():
-	var need_string = []
-	
-	for needed_furniture in level.needed_furnitures:
-		var state = needed_furniture.get_state() as SceneState
-		
-		for i in range(0, state.get_node_property_count(0)):
-			if state.get_node_property_name(0, i) == "display_name":
-				need_string.append(state.get_node_property_value(0, i))
-				
-	var placed_string = []
-	
-	for placed in placed_furniture:
-		placed_string.append(placed.display_name)
-	
-	need_string.sort()
-	placed_string.sort()
-	
-	if need_string.size() != placed_string.size():
-		return false
-		
-	for i in range(0, need_string.size()):
-		if need_string[i] != placed_string[i]:
-			return false
-			
-	return true
+#	var need_string = []
+#
+#	for needed_furniture in level.needed_furnitures:
+#		var state = needed_furniture.get_state() as SceneState
+#
+#		for i in range(0, state.get_node_property_count(0)):
+#			if state.get_node_property_name(0, i) == "display_name":
+#				need_string.append(state.get_node_property_value(0, i))
+#
+#	var placed_string = []
+#
+#	for placed in placed_furniture:
+#		placed_string.append(placed.display_name)
+#
+#	need_string.sort()
+#	placed_string.sort()
+#
+#	if need_string.size() != placed_string.size():
+#		return false
+#
+#	for i in range(0, need_string.size()):
+#		if need_string[i] != placed_string[i]:
+#			return false
+#
+#	return true
+	return false

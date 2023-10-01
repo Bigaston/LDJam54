@@ -9,6 +9,7 @@ size = Vector3(3.8, 0.8, 2.8)
 [node name="Bed Big" type="Node3D"]
 script = ExtResource("1_y58k7")
 display_name = "Big Bed"
+characteristics = Array[int]([0])
 
 [node name="Model" parent="." instance=ExtResource("2_e0sv7")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 1.2, 0.5, 1)

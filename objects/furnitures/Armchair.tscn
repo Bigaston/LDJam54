@@ -9,6 +9,7 @@ size = Vector3(1.8, 0.8, 1.8)
 [node name="Armchair" type="Node3D"]
 script = ExtResource("1_psth2")
 display_name = "Armchair"
+characteristics = Array[int]([2])
 
 [node name="Model" parent="." instance=ExtResource("2_gkydo")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 1, 1, 0.5)
