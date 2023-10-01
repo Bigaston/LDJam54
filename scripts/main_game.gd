@@ -10,6 +10,10 @@ const RAY_LENGTH = 100
 @export var ground: PackedScene
 @export var current_level: Level
 
+@export_category("Score Value")
+@export var SCORE_NORMAL_EMPTY = 50
+@export var SCORE_SUPER_EMPTY = 100
+
 var selected_case = Vector2(0, 0)
 var furniture_to_place = null
 var furniture_to_plate_button = null
@@ -253,14 +257,36 @@ func set_material_of_furniture(model, material):
 
 func _on_ui_finish_level():
 	var nb_case_empty = 0
+	var score = 0
 	
 	if update_completed_goal():
 		for marker in placed_markers:
 			if ((marker.type == Marker.MarkerType.GROUND or marker.type == Marker.MarkerType.GROUND_SUPER) 
 				and !marker.occuped):
+					
+				for mark in placed_markers:
+					if (
+						(mark.grid_position.x == marker.grid_position.x - 1 
+							and mark.grid_position.y == marker.grid_position.y)
+						or (mark.grid_position.x == marker.grid_position.x + 1 
+							and mark.grid_position.y == marker.grid_position.y)
+						or (mark.grid_position.y == marker.grid_position.y - 1 
+							and mark.grid_position.x == marker.grid_position.x)
+						or (mark.grid_position.y == marker.grid_position.y + 1 
+							and mark.grid_position.x == marker.grid_position.x)
+						):
+						if !mark.occuped && (mark.type == Marker.MarkerType.GROUND or mark.type == Marker.MarkerType.GROUND_SUPER):
+							if marker.type == Marker.MarkerType.GROUND:
+								score += SCORE_NORMAL_EMPTY
+							elif marker.type == Marker.MarkerType.GROUND_SUPER:
+								score += SCORE_SUPER_EMPTY
+								
+							break
+
 				nb_case_empty+=1
 	
 	print(nb_case_empty)
+	print(score)
 
 
 func update_completed_goal():
