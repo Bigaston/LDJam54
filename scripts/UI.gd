@@ -22,5 +22,13 @@ func remove_available_furniture(name: String):
 func _on_add_furniture_pressed(furniture: Furniture):
 	furniture_choosed.emit(furniture)
 
+func add_needs(need: String):
+	var text = Label.new()
+	text.text = need
+	text.label_settings = load("res://ressources/fonts/text.tres")
+	
+	$ScrollContainer/TaskContainer.add_child(text)
+	$ScrollContainer/TaskContainer.move_child(text, $ScrollContainer/TaskContainer/Title.get_index() + 1)
+
 func _on_button_pressed():
 	check_level.emit()

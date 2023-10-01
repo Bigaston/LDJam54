@@ -1,6 +1,14 @@
-[gd_scene load_steps=2 format=3 uid="uid://cmcvaxq3endno"]
+[gd_scene load_steps=4 format=3 uid="uid://cmcvaxq3endno"]
 
 [ext_resource type="Script" path="res://scripts/UI.gd" id="1_oktnx"]
+[ext_resource type="FontFile" uid="uid://4wi7tqkel30s" path="res://ressources/fonts/Absolute 10 Basic.ttf" id="2_h6g24"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_8bw56"]
+font = ExtResource("2_h6g24")
+font_size = 20
+font_color = Color(0.92549, 0.352941, 0.0745098, 1)
+outline_size = 2
+shadow_size = 0
 
 [node name="UI" type="Control"]
 layout_mode = 3
@@ -21,21 +29,29 @@ offset_right = 40.0
 offset_bottom = 20.0
 grow_vertical = 2
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="."]
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
 layout_mode = 1
-anchors_preset = 6
+anchors_preset = 11
 anchor_left = 1.0
-anchor_top = 0.5
 anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -40.0
-offset_top = -20.0
-offset_bottom = 20.0
+anchor_bottom = 1.0
+offset_left = -210.0
 grow_horizontal = 0
 grow_vertical = 2
 
-[node name="Button" type="Button" parent="VBoxContainer2"]
+[node name="TaskContainer" type="VBoxContainer" parent="ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Title" type="Label" parent="ScrollContainer/TaskContainer"]
+layout_mode = 2
+text = "Mandatory Furnitures"
+label_settings = SubResource("LabelSettings_8bw56")
+horizontal_alignment = 1
+
+[node name="Button" type="Button" parent="ScrollContainer/TaskContainer"]
 layout_mode = 2
 text = "Vérifier"
 
-[connection signal="pressed" from="VBoxContainer2/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="ScrollContainer/TaskContainer/Button" to="." method="_on_button_pressed"]

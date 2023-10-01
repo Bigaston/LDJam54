@@ -1,0 +1,7 @@
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://brvb2su0yfhqu"]
+
+[ext_resource type="FontFile" uid="uid://bubx3qlkvyqru" path="res://ressources/fonts/MatchupPro.ttf" id="1_6j48y"]
+
+[resource]
+font = ExtResource("1_6j48y")
+font_color = Color(0, 0, 0, 1)

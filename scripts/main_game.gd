@@ -80,6 +80,26 @@ func load_level(p_level: Level):
 	cam = OrbitCamera.new(camera_anchor)
 	camera_anchor.add_child(cam)
 	
+	# Needs
+	var needed_characs := {}
+	
+	for charac in level.needed_furnitures:
+		if needed_characs.has(charac):
+			needed_characs[charac] += 1
+		else:
+			needed_characs[charac] = 1
+			
+	for key in needed_characs.keys():
+		var string = ""
+		if needed_characs[key] > 1:
+			string = str(needed_characs[key]) + " " + Level.FurnitureTypeNamePlural[key]
+		else:
+			string = str(needed_characs[key]) + " " + Level.FurnitureTypeName[key]
+			
+		print(string)
+		
+		$UI.add_needs(string)
+	
 func _process(delta):
 	# Visible position of the furniture
 	if furniture_to_place == null:
@@ -204,33 +224,29 @@ func set_material_of_furniture(model, material):
 				child.set_surface_override_material(mat, material)
 
 func _on_ui_check_level():
-	print(is_level_completed())
+	print(update_completed_goal())
 
 
-func is_level_completed():
-#	var need_string = []
-#
-#	for needed_furniture in level.needed_furnitures:
-#		var state = needed_furniture.get_state() as SceneState
-#
-#		for i in range(0, state.get_node_property_count(0)):
-#			if state.get_node_property_name(0, i) == "display_name":
-#				need_string.append(state.get_node_property_value(0, i))
-#
-#	var placed_string = []
-#
-#	for placed in placed_furniture:
-#		placed_string.append(placed.display_name)
-#
-#	need_string.sort()
-#	placed_string.sort()
-#
-#	if need_string.size() != placed_string.size():
-#		return false
-#
-#	for i in range(0, need_string.size()):
-#		if need_string[i] != placed_string[i]:
-#			return false
-#
-#	return true
+func update_completed_goal():
+	var needed_characs := {}
+	
+	for charac in level.needed_furnitures:
+		if needed_characs.has(charac):
+			needed_characs[charac] += 1
+		else:
+			needed_characs[charac] = 1
+			
+	print(needed_characs)
+	
+	var placed_characs := {}
+	
+	for furniture in placed_furniture:
+		for charac in furniture.characteristics:
+			if placed_characs.has(charac):
+				placed_characs[charac] += 1
+			else:
+				placed_characs[charac] = 1
+				
+	print(placed_characs)
+		
 	return false
