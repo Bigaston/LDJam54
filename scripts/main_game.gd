@@ -90,16 +90,17 @@ func load_level(p_level: Level):
 			needed_characs[charac] = 1
 			
 	for key in needed_characs.keys():
-		var string = ""
-		if needed_characs[key] > 1:
-			string = str(needed_characs[key]) + " " + Level.FurnitureTypeNamePlural[key]
-		else:
-			string = str(needed_characs[key]) + " " + Level.FurnitureTypeName[key]
-			
-		print(string)
-		
-		$UI.add_needs(string)
+		$UI.add_needs(get_need_string(key, needed_characs[key]))
 	
+func get_need_string(furniture_type, number):
+	var string = ""
+	if number > 1:
+		string = str(number) + " " + Level.FurnitureTypeNamePlural[furniture_type]
+	else:
+		string = str(number) + " " + Level.FurnitureTypeName[furniture_type]
+		
+	return string
+			
 func _process(delta):
 	# Visible position of the furniture
 	if furniture_to_place == null:
@@ -139,6 +140,7 @@ func _process(delta):
 			
 			furniture_to_place = null
 			last_frame_correct_status = null
+			update_completed_goal()
 			
 	if Input.is_action_just_pressed("furniture_delete"):
 		var space_state = get_world_3d().direct_space_state
@@ -162,6 +164,7 @@ func _process(delta):
 			print(placed_furniture)
 			
 			furniture.queue_free()
+			update_completed_goal()
 		
 	# Check if position is correct
 	if furniture_to_place != null && selected_case != null:
@@ -248,5 +251,17 @@ func update_completed_goal():
 				placed_characs[charac] = 1
 				
 	print(placed_characs)
+	
+	var number_of_fulfill = 0
+	
+	for key in needed_characs.keys():
+		var string = get_need_string(key, needed_characs[key])
 		
-	return false
+		if placed_characs.has(key) and placed_characs[key] >= needed_characs[key]:
+			$UI.set_need_fullfill(string, true)
+			
+			number_of_fulfill+=1
+		else:
+			$UI.set_need_fullfill(string, false)
+			
+	return number_of_fulfill >= needed_characs.keys().size()

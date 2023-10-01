@@ -24,11 +24,20 @@ func _on_add_furniture_pressed(furniture: Furniture):
 
 func add_needs(need: String):
 	var text = Label.new()
-	text.text = need
+	text.text = "❌" + need
+	text.name = "need_" + need
 	text.label_settings = load("res://ressources/fonts/text.tres")
 	
 	$ScrollContainer/TaskContainer.add_child(text)
 	$ScrollContainer/TaskContainer.move_child(text, $ScrollContainer/TaskContainer/Title.get_index() + 1)
+
+func set_need_fullfill(need: String, filled: bool):
+	var text = $ScrollContainer/TaskContainer.get_node("need_" + need)
+	
+	if filled:
+		text.text = "✔️" + need
+	else:
+		text.text = "❌" + need
 
 func _on_button_pressed():
 	check_level.emit()
