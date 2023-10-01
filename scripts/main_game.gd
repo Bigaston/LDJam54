@@ -2,6 +2,8 @@ extends Node3D
 
 const RAY_LENGTH = 100
 
+signal return_level_choice()
+
 @onready var selector = $Selector
 
 @export var transparent_mat: ShaderMaterial
@@ -27,9 +29,16 @@ var placed_markers = []
 
 var placed_furniture: Array[Furniture] = []
 
+var initialized_from_code = false
+
 # Called when the node enters the scene tree for the first time.
+func initialise(level: Level):
+	load_level(level)
+	initialized_from_code = true
+
 func _ready():
-	load_level(current_level)
+	if !initialized_from_code:
+		load_level(current_level)
 	
 func load_level(p_level: Level):
 	level = p_level
@@ -336,4 +345,4 @@ func update_completed_goal():
 
 
 func _on_ui_back_level():
-	pass # Replace with function body.
+	return_level_choice.emit()

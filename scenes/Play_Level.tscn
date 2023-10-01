@@ -1,0 +1,45 @@
+[gd_scene load_steps=11 format=3 uid="uid://dimsd71dmifu2"]
+
+[ext_resource type="Script" path="res://scripts/main_game.gd" id="1_54dk4"]
+[ext_resource type="Material" uid="uid://cww4ay23o6m2h" path="res://ressources/shaders/transparent.tres" id="2_jimhx"]
+[ext_resource type="Material" uid="uid://c5jfd0ju8gwpx" path="res://ressources/shaders/transparent_error.tres" id="3_piebu"]
+[ext_resource type="PackedScene" uid="uid://4opaa4e07qep" path="res://objects/Marker.tscn" id="4_86uxt"]
+[ext_resource type="PackedScene" uid="uid://cibyu72gqcrwh" path="res://objects/SquareGround.tscn" id="5_tcetn"]
+[ext_resource type="PackedScene" uid="uid://bwhachbg3twja" path="res://objects/SquareGroundSuper.tscn" id="6_6vdp0"]
+[ext_resource type="Resource" uid="uid://bs7lvmjefgabh" path="res://ressources/levels/Level1.tres" id="7_8yckd"]
+[ext_resource type="PackedScene" uid="uid://cmcvaxq3endno" path="res://objects/UI.tscn" id="8_omsnp"]
+
+[sub_resource type="Environment" id="Environment_tq2d1"]
+background_mode = 1
+background_color = Color(0.945098, 0.513726, 0.894118, 1)
+ambient_light_source = 2
+ambient_light_color = Color(0, 0.462745, 0.690196, 1)
+reflected_light_source = 1
+
+[sub_resource type="BoxMesh" id="BoxMesh_foyal"]
+
+[node name="Play_Level" type="Node3D"]
+script = ExtResource("1_54dk4")
+transparent_mat = ExtResource("2_jimhx")
+transparent_error_mat = ExtResource("3_piebu")
+debug_case = ExtResource("4_86uxt")
+ground = ExtResource("5_tcetn")
+ground_super = ExtResource("6_6vdp0")
+current_level = ExtResource("7_8yckd")
+
+[node name="UI" parent="." instance=ExtResource("8_omsnp")]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_tq2d1")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.842753, 0.5383, 0, -0.5383, 0.842753, 0, 5.20692, 4.92704)
+
+[node name="Selector" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.60821, 2.25807, 0)
+material_override = ExtResource("2_jimhx")
+mesh = SubResource("BoxMesh_foyal")
+
+[connection signal="back_level" from="UI" to="." method="_on_ui_back_level"]
+[connection signal="finish_level" from="UI" to="." method="_on_ui_finish_level"]
+[connection signal="furniture_choosed" from="UI" to="." method="_on_ui_furniture_choosed"]

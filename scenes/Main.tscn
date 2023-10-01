@@ -1,44 +1,6 @@
-[gd_scene load_steps=11 format=3 uid="uid://dimsd71dmifu2"]
+[gd_scene load_steps=2 format=3 uid="uid://kary0qvu5it5"]
 
-[ext_resource type="Script" path="res://scripts/main_game.gd" id="1_c54g1"]
-[ext_resource type="PackedScene" uid="uid://cmcvaxq3endno" path="res://objects/UI.tscn" id="2_jpn1h"]
-[ext_resource type="Material" uid="uid://c5jfd0ju8gwpx" path="res://ressources/shaders/transparent_error.tres" id="3_l88p4"]
-[ext_resource type="Material" uid="uid://cww4ay23o6m2h" path="res://ressources/shaders/transparent.tres" id="4_f4v77"]
-[ext_resource type="PackedScene" uid="uid://4opaa4e07qep" path="res://objects/Marker.tscn" id="4_ogku5"]
-[ext_resource type="PackedScene" uid="uid://cibyu72gqcrwh" path="res://objects/SquareGround.tscn" id="5_6hgqy"]
-[ext_resource type="PackedScene" uid="uid://bwhachbg3twja" path="res://objects/SquareGroundSuper.tscn" id="6_118s8"]
-[ext_resource type="Resource" uid="uid://bs7lvmjefgabh" path="res://ressources/levels/Level1.tres" id="6_4717v"]
+[ext_resource type="Script" path="res://scripts/Main.gd" id="1_xj28f"]
 
-[sub_resource type="Environment" id="Environment_tq2d1"]
-background_mode = 1
-background_color = Color(0.945098, 0.513726, 0.894118, 1)
-ambient_light_source = 2
-ambient_light_color = Color(0, 0.462745, 0.690196, 1)
-reflected_light_source = 1
-
-[sub_resource type="BoxMesh" id="BoxMesh_foyal"]
-
-[node name="Main" type="Node3D"]
-script = ExtResource("1_c54g1")
-transparent_mat = ExtResource("4_f4v77")
-transparent_error_mat = ExtResource("3_l88p4")
-debug_case = ExtResource("4_ogku5")
-ground = ExtResource("5_6hgqy")
-ground_super = ExtResource("6_118s8")
-current_level = ExtResource("6_4717v")
-
-[node name="UI" parent="." instance=ExtResource("2_jpn1h")]
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_tq2d1")
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.842753, 0.5383, 0, -0.5383, 0.842753, 0, 5.20692, 4.92704)
-
-[node name="Selector" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.60821, 2.25807, 0)
-material_override = ExtResource("4_f4v77")
-mesh = SubResource("BoxMesh_foyal")
-
-[connection signal="finish_level" from="UI" to="." method="_on_ui_finish_level"]
-[connection signal="furniture_choosed" from="UI" to="." method="_on_ui_furniture_choosed"]
+[node name="Main" type="Node"]
+script = ExtResource("1_xj28f")
