@@ -2,13 +2,20 @@ extends Node3D
 
 const RAY_LENGTH = 100
 
+signal return_level_choice()
+
 @onready var selector = $Selector
 
 @export var transparent_mat: ShaderMaterial
 @export var transparent_error_mat: ShaderMaterial
 @export var debug_case: PackedScene
 @export var ground: PackedScene
+@export var ground_super: PackedScene
 @export var current_level: Level
+
+@export_category("Score Value")
+@export var SCORE_NORMAL_EMPTY = 50
+@export var SCORE_SUPER_EMPTY = 100
 
 var selected_case = Vector2(0, 0)
 var furniture_to_place = null
@@ -22,9 +29,16 @@ var placed_markers = []
 
 var placed_furniture: Array[Furniture] = []
 
+var initialized_from_code = false
+
 # Called when the node enters the scene tree for the first time.
+func initialise(level: Level):
+	load_level(level)
+	initialized_from_code = true
+
 func _ready():
-	load_level(current_level)
+	if !initialized_from_code:
+		load_level(current_level)
 	
 func load_level(p_level: Level):
 	level = p_level
@@ -63,17 +77,24 @@ func load_level(p_level: Level):
 			placed_markers.append(case)
 			
 			# TODO: Replace avec un bon moyen de compter x2
-			if char == "*" or char == "$":
-				var ground_instance = ground.instantiate()
+
 				
+			if char == "*":
+				case.type = Marker.MarkerType.GROUND
+				
+				var ground_instance = ground.instantiate()
+			
 				ground_instance.position = Vector3(col, 0, line)
 				
 				add_child(ground_instance)
+			elif char == "$":
+				case.type = Marker.MarkerType.GROUND_SUPER
 				
-				if char == "*":
-					case.type = Marker.MarkerType.GROUND
-				if char == "$":
-					case.type = Marker.MarkerType.GROUND_SUPER
+				var ground_instance = ground_super.instantiate()
+			
+				ground_instance.position = Vector3(col, 0, line)
+				
+				add_child(ground_instance)
 			elif char == "x":
 				case.get_node("Area3D").set_collision_layer_value(3, true)
 				case.get_node("Area3D").set_collision_layer_value(4, false)
@@ -252,15 +273,37 @@ func set_material_of_furniture(model, material):
 				child.set_surface_override_material(mat, material)
 
 func _on_ui_finish_level():
-	var nb_case_empty = 0
+	var nb_case_normal_empty = 0
+	var nb_case_super_empty = 0
+	var score = 0
 	
 	if update_completed_goal():
 		for marker in placed_markers:
 			if ((marker.type == Marker.MarkerType.GROUND or marker.type == Marker.MarkerType.GROUND_SUPER) 
 				and !marker.occuped):
-				nb_case_empty+=1
-	
-	print(nb_case_empty)
+					
+				for mark in placed_markers:
+					if (
+						(mark.grid_position.x == marker.grid_position.x - 1 
+							and mark.grid_position.y == marker.grid_position.y)
+						or (mark.grid_position.x == marker.grid_position.x + 1 
+							and mark.grid_position.y == marker.grid_position.y)
+						or (mark.grid_position.y == marker.grid_position.y - 1 
+							and mark.grid_position.x == marker.grid_position.x)
+						or (mark.grid_position.y == marker.grid_position.y + 1 
+							and mark.grid_position.x == marker.grid_position.x)
+						):
+						if !mark.occuped && (mark.type == Marker.MarkerType.GROUND or mark.type == Marker.MarkerType.GROUND_SUPER):
+							if marker.type == Marker.MarkerType.GROUND:
+								score += SCORE_NORMAL_EMPTY
+								nb_case_normal_empty+=1
+							elif marker.type == Marker.MarkerType.GROUND_SUPER:
+								score += SCORE_SUPER_EMPTY
+								nb_case_super_empty+=1
+								
+							break
+
+	$UI.display_score(nb_case_normal_empty, SCORE_NORMAL_EMPTY, nb_case_super_empty, SCORE_SUPER_EMPTY, score)
 
 
 func update_completed_goal():
@@ -299,3 +342,7 @@ func update_completed_goal():
 	
 	return valide_level
 	
+
+
+func _on_ui_back_level():
+	return_level_choice.emit()

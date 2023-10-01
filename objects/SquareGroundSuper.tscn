@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://bwhachbg3twja"]
+
+[ext_resource type="Texture2D" uid="uid://644p7l04wilo" path="res://ressources/proto_textures/Orange/texture_02.png" id="1_cegk5"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ec23t"]
+albedo_texture = ExtResource("1_cegk5")
+
+[sub_resource type="BoxMesh" id="BoxMesh_4omb3"]
+material = SubResource("StandardMaterial3D_ec23t")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_cd2jj"]
+
+[node name="SquareGround" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_4omb3")
+
+[node name="Area3D" type="Area3D" parent="."]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("BoxShape3D_cd2jj")

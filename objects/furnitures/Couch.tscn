@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://dvxroaccvfmic" path="res://ressources/meshes/canape.tscn" id="2_6l2yq"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_8s3ay"]
-size = Vector3(1.8, 0.8, 3.8)
+size = Vector3(0.8, 0.8, 3.8)
 
 [node name="Bed" type="Node3D"]
 script = ExtResource("1_06pwk")
@@ -12,10 +12,10 @@ display_name = "Couch"
 characteristics = Array[int]([2])
 
 [node name="Model" parent="." instance=ExtResource("2_6l2yq")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0.5, 0.5, 1.5)
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0.5, 1.5)
 
 [node name="Area3D" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0.5, 1.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 1.5)
 collision_mask = 13
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]

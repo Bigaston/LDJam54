@@ -1,0 +1,10 @@
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://bx3aogh0842ot"]
+
+[ext_resource type="FontFile" uid="uid://4wi7tqkel30s" path="res://ressources/fonts/Absolute 10 Basic.ttf" id="1_oddfx"]
+
+[resource]
+font = ExtResource("1_oddfx")
+font_size = 40
+font_color = Color(0.92549, 0.352941, 0.0745098, 1)
+outline_size = 2
+shadow_size = 0
