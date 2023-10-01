@@ -2,6 +2,7 @@ extends Control
 
 signal furniture_choosed(furniture: Furniture, button: Button)
 signal finish_level()
+signal back_level()
 
 func add_available_furniture(furniture: Furniture):
 	var container = $VBoxContainer
@@ -40,3 +41,10 @@ func set_level_finishable(value: bool):
 
 func _on_finish_level_button_pressed():
 	finish_level.emit()
+	
+func display_score(normal_case, normal_case_score, super_case, super_case_score, score):
+	$ScoreModal.display_score(normal_case, normal_case_score, super_case, super_case_score, score)
+
+
+func _on_score_modal_back_level():
+	back_level.emit()

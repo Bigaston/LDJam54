@@ -8,6 +8,7 @@ const RAY_LENGTH = 100
 @export var transparent_error_mat: ShaderMaterial
 @export var debug_case: PackedScene
 @export var ground: PackedScene
+@export var ground_super: PackedScene
 @export var current_level: Level
 
 @export_category("Score Value")
@@ -67,17 +68,24 @@ func load_level(p_level: Level):
 			placed_markers.append(case)
 			
 			# TODO: Replace avec un bon moyen de compter x2
-			if char == "*" or char == "$":
-				var ground_instance = ground.instantiate()
+
 				
+			if char == "*":
+				case.type = Marker.MarkerType.GROUND
+				
+				var ground_instance = ground.instantiate()
+			
 				ground_instance.position = Vector3(col, 0, line)
 				
 				add_child(ground_instance)
+			elif char == "$":
+				case.type = Marker.MarkerType.GROUND_SUPER
 				
-				if char == "*":
-					case.type = Marker.MarkerType.GROUND
-				if char == "$":
-					case.type = Marker.MarkerType.GROUND_SUPER
+				var ground_instance = ground_super.instantiate()
+			
+				ground_instance.position = Vector3(col, 0, line)
+				
+				add_child(ground_instance)
 			elif char == "x":
 				case.get_node("Area3D").set_collision_layer_value(3, true)
 				case.get_node("Area3D").set_collision_layer_value(4, false)
@@ -256,7 +264,8 @@ func set_material_of_furniture(model, material):
 				child.set_surface_override_material(mat, material)
 
 func _on_ui_finish_level():
-	var nb_case_empty = 0
+	var nb_case_normal_empty = 0
+	var nb_case_super_empty = 0
 	var score = 0
 	
 	if update_completed_goal():
@@ -278,15 +287,14 @@ func _on_ui_finish_level():
 						if !mark.occuped && (mark.type == Marker.MarkerType.GROUND or mark.type == Marker.MarkerType.GROUND_SUPER):
 							if marker.type == Marker.MarkerType.GROUND:
 								score += SCORE_NORMAL_EMPTY
+								nb_case_normal_empty+=1
 							elif marker.type == Marker.MarkerType.GROUND_SUPER:
 								score += SCORE_SUPER_EMPTY
+								nb_case_super_empty+=1
 								
 							break
 
-				nb_case_empty+=1
-	
-	print(nb_case_empty)
-	print(score)
+	$UI.display_score(nb_case_normal_empty, SCORE_NORMAL_EMPTY, nb_case_super_empty, SCORE_SUPER_EMPTY, score)
 
 
 func update_completed_goal():
@@ -325,3 +333,7 @@ func update_completed_goal():
 	
 	return valide_level
 	
+
+
+func _on_ui_back_level():
+	pass # Replace with function body.
