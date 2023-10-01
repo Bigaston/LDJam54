@@ -11,10 +11,11 @@ script = ExtResource("1_psth2")
 display_name = "Armchair"
 
 [node name="Model" parent="." instance=ExtResource("2_gkydo")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0.5, 1, 0.5)
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 1, 1, 0.5)
 
 [node name="Area3D" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0.5, 0.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7, 0.5, 0.5)
+collision_mask = 5
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 shape = SubResource("BoxShape3D_8s3ay")

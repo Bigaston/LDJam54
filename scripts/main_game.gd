@@ -7,35 +7,76 @@ const RAY_LENGTH = 100
 @export var transparent_mat: ShaderMaterial
 @export var transparent_error_mat: ShaderMaterial
 @export var debug_case: PackedScene
+@export var ground: PackedScene
 
 var selected_case = Vector2(0, 0)
 var furniture_to_place = null
 var current_rotation = 0
 var last_frame_correct_status = null
 var cam
-var level
+var level: Level
 
 var placed_furniture: Array[Furniture] = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	load_level(load("res://scenes/levels/Level1.tscn"))
+	load_level(load("res://ressources/levels/Level1.tres"))
 	
-func load_level(p_level: PackedScene):
-	level = p_level.instantiate()
+func load_level(p_level: Level):
+	level = p_level
 	
-	add_child(level)
-	add_camera()
-	
+	# Add Furniture to UI
 	var ui = $UI
 	
 	for furniture_scene in level.available_furnitures:
 		var furniture = furniture_scene.instantiate() 
 		ui.add_available_furniture(furniture)
+		
+	# Load level informations
+	var file_access = FileAccess.open(level.map, FileAccess.READ)
+	print(file_access.get_as_text())
 	
-func add_camera():
-	var camera_anchor = level.get_camera_anchor()
+	var lines = file_access.get_as_text().split("\n")
 	
+	for line in range(0, lines.size()):
+		if lines[line] == "":
+			continue
+		
+		var columns = lines[line].split("")
+		
+		for col in range(0, columns.size()):
+			var char = columns[col]
+			
+			var case = debug_case.instantiate()
+			
+			case.position.x = col
+			case.position.y = 0.5
+			case.position.z = line
+			
+			add_child(case)
+			
+			if char == "*":
+				var ground_instance = ground.instantiate()
+				
+				ground_instance.position = Vector3(col, 0, line)
+				
+				add_child(ground_instance)
+			elif char == "x":
+				case.get_node("Area3D").set_collision_layer_value(3, true)
+	
+	# Camera
+	var camera_anchor_parent = Node3D.new()
+	
+	camera_anchor_parent.position = Vector3(lines.size() / 2, 0.5, lines[0].split("").size() / 2)
+	
+	add_child(camera_anchor_parent)
+	
+	var camera_anchor = Node3D.new()
+	
+	camera_anchor.rotation.x = deg_to_rad(-60)
+		
+	camera_anchor_parent.add_child(camera_anchor)
+		
 	cam = OrbitCamera.new(camera_anchor)
 	camera_anchor.add_child(cam)
 	
@@ -164,33 +205,7 @@ func set_material_of_furniture(model, material):
 
 func _on_ui_check_level():
 	print(is_level_completed())
-	check_level_cases()
 
-func check_level_cases():
-	var file_access = FileAccess.open(level.map, FileAccess.READ)
-	print(file_access.get_as_text())
-	
-	var lines = file_access.get_as_text().split("\n")
-	
-	for line in range(0, lines.size()):
-		if lines[line] == "":
-			continue
-		
-		var columns = lines[line].split("")
-		
-		for col in range(0, columns.size()):
-			var char = columns[col]
-			
-			var case = debug_case.instantiate()
-			
-			case.position.x = col
-			case.position.y = 0.5
-			case.position.z = line
-			
-			add_child(case)
-			
-			if char == "*":
-				pass
 
 func is_level_completed():
 	var need_string = []

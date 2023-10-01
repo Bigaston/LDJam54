@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://cibyu72gqcrwh"]
+
+[ext_resource type="Texture2D" uid="uid://dr0k2axoofy2f" path="res://ressources/proto_textures/Dark/texture_03.png" id="1_ddwxx"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6jjx5"]
+albedo_texture = ExtResource("1_ddwxx")
+
+[sub_resource type="BoxMesh" id="BoxMesh_bngo4"]
+material = SubResource("StandardMaterial3D_6jjx5")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_cd2jj"]
+
+[node name="SquareGround" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_bngo4")
+
+[node name="Area3D" type="Area3D" parent="."]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("BoxShape3D_cd2jj")

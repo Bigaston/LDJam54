@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://dimsd71dmifu2"]
+[gd_scene load_steps=9 format=3 uid="uid://dimsd71dmifu2"]
 
 [ext_resource type="Script" path="res://scripts/main_game.gd" id="1_c54g1"]
 [ext_resource type="PackedScene" uid="uid://cmcvaxq3endno" path="res://objects/UI.tscn" id="2_jpn1h"]
 [ext_resource type="Material" uid="uid://c5jfd0ju8gwpx" path="res://ressources/shaders/transparent_error.tres" id="3_l88p4"]
-[ext_resource type="PackedScene" uid="uid://4opaa4e07qep" path="res://objects/DebugCase.tscn" id="4_eongf"]
 [ext_resource type="Material" uid="uid://cww4ay23o6m2h" path="res://ressources/shaders/transparent.tres" id="4_f4v77"]
+[ext_resource type="PackedScene" uid="uid://4opaa4e07qep" path="res://objects/Marker.tscn" id="4_ogku5"]
+[ext_resource type="PackedScene" uid="uid://cibyu72gqcrwh" path="res://objects/SquareGround.tscn" id="5_6hgqy"]
 
 [sub_resource type="Environment" id="Environment_tq2d1"]
 background_mode = 1
@@ -16,7 +17,8 @@ background_color = Color(0.968627, 0.862745, 0.435294, 1)
 script = ExtResource("1_c54g1")
 transparent_mat = ExtResource("4_f4v77")
 transparent_error_mat = ExtResource("3_l88p4")
-debug_case = ExtResource("4_eongf")
+debug_case = ExtResource("4_ogku5")
+ground = ExtResource("5_6hgqy")
 
 [node name="UI" parent="." instance=ExtResource("2_jpn1h")]
 

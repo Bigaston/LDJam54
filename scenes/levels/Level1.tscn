@@ -1,39 +1,12 @@
-[gd_scene load_steps=9 format=3 uid="uid://bfq6qql701lp3"]
+[gd_scene load_steps=5 format=3 uid="uid://cwtdtj1tikql2"]
 
 [ext_resource type="Script" path="res://scripts/Level.gd" id="1_08cl3"]
 [ext_resource type="PackedScene" uid="uid://na7tsji6c6l5" path="res://objects/furnitures/Bed_Small.tscn" id="2_1u7m7"]
-[ext_resource type="Texture2D" uid="uid://dr0k2axoofy2f" path="res://ressources/proto_textures/Dark/texture_03.png" id="2_udru1"]
 [ext_resource type="PackedScene" uid="uid://bb22ga2nchga0" path="res://objects/furnitures/Bed_Big.tscn" id="3_xiky8"]
 [ext_resource type="PackedScene" uid="uid://cyt5owtf8d0cj" path="res://objects/furnitures/Armchair.tscn" id="4_0idya"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rg8fg"]
-albedo_texture = ExtResource("2_udru1")
-uv1_scale = Vector3(10, 6, 8)
-
-[sub_resource type="BoxMesh" id="BoxMesh_3i07s"]
-material = SubResource("StandardMaterial3D_rg8fg")
-size = Vector3(10, 1, 10)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_c51dl"]
-size = Vector3(10, 1, 10)
-
 [node name="Level1" type="Node3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 5)
 script = ExtResource("1_08cl3")
 available_furnitures = Array[PackedScene]([ExtResource("2_1u7m7"), ExtResource("3_xiky8"), ExtResource("4_0idya")])
 needed_furnitures = Array[PackedScene]([ExtResource("2_1u7m7")])
 map = "res://scenes/levels/level1.map.txt"
-
-[node name="Ground" type="MeshInstance3D" parent="."]
-mesh = SubResource("BoxMesh_3i07s")
-skeleton = NodePath("../..")
-
-[node name="Area3D" type="Area3D" parent="Ground"]
-collision_layer = 2
-collision_mask = 0
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground/Area3D"]
-shape = SubResource("BoxShape3D_c51dl")
-
-[node name="CameraAnchor" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.5, 0.866025, 0, -0.866025, 0.5, 0, 0, 0)
