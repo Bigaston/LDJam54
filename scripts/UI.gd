@@ -1,21 +1,22 @@
 extends Control
 
-signal furniture_choosed(furniture: Furniture, button: Button)
+signal furniture_choosed(furniture: Furniture, button: TextureButton)
 signal finish_level()
 signal back_level()
 
 func add_available_furniture(furniture: Furniture):
 	var container = $ScrollContainer2/VBoxContainer
 	
-	var button = Button.new()
-	button.text = furniture.display_name
+	var button := TextureButton.new()
+	button.texture_normal = furniture.cover
 	button.name = furniture.display_name
+	button.stretch_mode = TextureButton.STRETCH_KEEP_CENTERED
 	
 	button.pressed.connect(_on_add_furniture_pressed.bind(furniture, button))
 	
 	container.add_child(button)
 
-func _on_add_furniture_pressed(furniture: Furniture, button: Button):
+func _on_add_furniture_pressed(furniture: Furniture, button: TextureButton):
 	furniture_choosed.emit(furniture, button)
 
 func add_needs(need: String):

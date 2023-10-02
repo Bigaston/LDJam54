@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://dvy3a26jhskg6"]
+[gd_scene load_steps=5 format=3 uid="uid://dvy3a26jhskg6"]
 
 [ext_resource type="Script" path="res://scripts/Furniture.gd" id="1_j86fq"]
 [ext_resource type="PackedScene" uid="uid://d3obdqmouix2p" path="res://ressources/meshes/biblio.tscn" id="2_6rfvb"]
+[ext_resource type="Texture2D" uid="uid://cf1knihnssspm" path="res://ressources/images/furnitures/bookcase.png" id="2_xahfu"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_8s3ay"]
 size = Vector3(0.8, 0.8, 2.8)
@@ -9,6 +10,7 @@ size = Vector3(0.8, 0.8, 2.8)
 [node name="Armchair" type="Node3D"]
 script = ExtResource("1_j86fq")
 display_name = "Bookcase"
+cover = ExtResource("2_xahfu")
 characteristics = Array[int]([3])
 
 [node name="Model" parent="." instance=ExtResource("2_6rfvb")]
