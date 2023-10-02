@@ -1,0 +1,14 @@
+xxxxxxx
+xx**xxx
+xx**xxx
+xx****xxxxxxx
+xx****x*****x
+xx$**$$$***$x
+xx$***x*****x
+xx*$*xx*****x
+xxx$xxxxxx$*x
+x**$*xxxxx$xx
+x****xxxx*$xx
+x****xxxx***x
+x****xxxxxxxx
+xxxxxx
