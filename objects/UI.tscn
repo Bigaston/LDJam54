@@ -63,5 +63,14 @@ layout_mode = 2
 disabled = true
 text = "Finish Level"
 
+[node name="LabelInfo" type="Label" parent="ScrollContainer/TaskContainer"]
+layout_mode = 2
+text = "INFORMATION:
+- Select an object to place on the left
+- Use SPACE to place
+- Use R to rotate
+- Use DELETE to delete a furniture"
+autowrap_mode = 2
+
 [connection signal="back_level" from="ScoreModal" to="." method="_on_score_modal_back_level"]
 [connection signal="pressed" from="ScrollContainer/TaskContainer/FinishLevelButton" to="." method="_on_finish_level_button_pressed"]

@@ -1,8 +1,8 @@
-.xxx.....
-x**$x....
-x**$xxxx.
+xxxxxxxxx
+x**$xxxxx
+x**$xxxxx
 x$******x
 x$******x
 x******$x
 x*******x
-.xxxxxxx.
+xxxxxxxxx

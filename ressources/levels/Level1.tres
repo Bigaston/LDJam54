@@ -12,6 +12,7 @@
 
 [resource]
 script = ExtResource("1_dxxv6")
+level_index = 1
 available_furnitures = Array[PackedScene]([ExtResource("1_6wqor"), ExtResource("2_acj7i"), ExtResource("3_0dy3o"), ExtResource("4_xrnn2"), ExtResource("5_bdnwo"), ExtResource("6_6bpyf"), ExtResource("6_6bpyf"), ExtResource("7_f812l"), ExtResource("8_c6bju")])
 needed_furnitures = Array[int]([0, 1, 2, 2, 3])
 map = "res://ressources/levels/level1.map.txt"

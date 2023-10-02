@@ -1,10 +1,10 @@
-[gd_resource type="Resource" script_class="Level" load_steps=14 format=3 uid="uid://b7loex8vuxaol"]
+[gd_resource type="Resource" script_class="Level" load_steps=14 format=3 uid="uid://dgorb5e4qxlv2"]
 
 [ext_resource type="Script" path="res://scripts/Level.gd" id="1_0ci0m"]
-[ext_resource type="PackedScene" path="res://objects/furnitures/Desk.tscn" id="1_iavhm"]
+[ext_resource type="PackedScene" uid="uid://bkbb5o2ojajxj" path="res://objects/furnitures/Desk.tscn" id="1_iavhm"]
 [ext_resource type="PackedScene" uid="uid://bb22ga2nchga0" path="res://objects/furnitures/Bed_Big.tscn" id="2_i8ht3"]
 [ext_resource type="PackedScene" uid="uid://na7tsji6c6l5" path="res://objects/furnitures/Bed_Small.tscn" id="3_b4gbm"]
-[ext_resource type="PackedScene" path="res://objects/furnitures/Lamp.tscn" id="4_8gjke"]
+[ext_resource type="PackedScene" uid="uid://dxhgsfm8d1scr" path="res://objects/furnitures/Lamp.tscn" id="4_8gjke"]
 [ext_resource type="PackedScene" uid="uid://caqqnh78hkx6d" path="res://objects/furnitures/Chair.tscn" id="5_4wfm4"]
 [ext_resource type="PackedScene" uid="uid://dn4yoyijgjmyf" path="res://objects/furnitures/Couch.tscn" id="6_stqc3"]
 [ext_resource type="PackedScene" uid="uid://cyt5owtf8d0cj" path="res://objects/furnitures/Armchair.tscn" id="7_28hyv"]
@@ -12,10 +12,11 @@
 [ext_resource type="PackedScene" uid="uid://7gj2ovy0q264" path="res://objects/furnitures/Low_Table.tscn" id="9_mwl4o"]
 [ext_resource type="PackedScene" uid="uid://clcvo4tgl7u3v" path="res://objects/furnitures/Table_Big.tscn" id="10_yyg6i"]
 [ext_resource type="PackedScene" uid="uid://dn7sgr0ta8oa" path="res://objects/furnitures/Wardrobe_Big.tscn" id="12_axu3m"]
-[ext_resource type="PackedScene" path="res://objects/furnitures/Bookcase.tscn" id="13_wmakt"]
+[ext_resource type="PackedScene" uid="uid://dvy3a26jhskg6" path="res://objects/furnitures/Bookcase.tscn" id="13_wmakt"]
 
 [resource]
 script = ExtResource("1_0ci0m")
+level_index = 4
 available_furnitures = Array[PackedScene]([ExtResource("1_iavhm"), ExtResource("2_i8ht3"), ExtResource("3_b4gbm"), ExtResource("4_8gjke"), ExtResource("4_8gjke"), ExtResource("4_8gjke"), ExtResource("5_4wfm4"), ExtResource("5_4wfm4"), ExtResource("5_4wfm4"), ExtResource("6_stqc3"), ExtResource("7_28hyv"), ExtResource("8_2yhss"), ExtResource("9_mwl4o"), ExtResource("10_yyg6i"), ExtResource("12_axu3m"), ExtResource("13_wmakt"), ExtResource("1_iavhm")])
 needed_furnitures = Array[int]([0, 0, 2, 2, 2, 2, 2, 1, 1, 5, 5, 5, 3, 3, 6, 4, 4])
 map = "res://ressources/levels/level4.map.txt"
