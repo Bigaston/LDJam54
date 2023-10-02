@@ -1,0 +1,82 @@
+[gd_scene load_steps=5 format=3 uid="uid://bxm1m8fjlxgxa"]
+
+[ext_resource type="Script" path="res://scripts/Level_Selector.gd" id="1_5qpor"]
+[ext_resource type="Texture2D" uid="uid://swbc3mcn8sc0" path="res://ressources/images/map.png" id="2_0lrj6"]
+[ext_resource type="Texture2D" uid="uid://beadycs5mvhmr" path="res://ressources/images/map_marker_green.png" id="2_i0x85"]
+[ext_resource type="Texture2D" uid="uid://cww727pxyt6e" path="res://ressources/images/map_marker.png" id="3_kcvkr"]
+
+[node name="Level_Selector" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_5qpor")
+completed_texture = ExtResource("2_i0x85")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Map" type="TextureRect" parent="AspectRatioContainer"]
+layout_mode = 2
+texture = ExtResource("2_0lrj6")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="Level1" type="TextureButton" parent="AspectRatioContainer/Map"]
+layout_mode = 2
+offset_left = 308.0
+offset_top = 442.0
+offset_right = 360.0
+offset_bottom = 494.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("3_kcvkr")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="Level2" type="TextureButton" parent="AspectRatioContainer/Map"]
+layout_mode = 2
+offset_left = 831.0
+offset_top = 286.0
+offset_right = 1479.0
+offset_bottom = 934.0
+texture_normal = ExtResource("3_kcvkr")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="Level3" type="TextureButton" parent="AspectRatioContainer/Map"]
+layout_mode = 2
+offset_left = 852.0
+offset_top = -325.0
+offset_right = 1500.0
+offset_bottom = 323.0
+texture_normal = ExtResource("3_kcvkr")
+ignore_texture_size = true
+stretch_mode = 5
+
+[connection signal="pressed" from="AspectRatioContainer/Map/Level1" to="." method="_on_level_1_pressed"]
+[connection signal="pressed" from="AspectRatioContainer/Map/Level2" to="." method="_on_level_2_pressed"]
+[connection signal="pressed" from="AspectRatioContainer/Map/Level3" to="." method="_on_level_3_pressed"]

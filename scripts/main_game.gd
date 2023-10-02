@@ -156,6 +156,9 @@ func _process(delta):
 			
 	# Inputs
 	if Input.is_action_just_pressed("furniture_rotate"):
+		if furniture_to_place == null:
+			return
+		
 		furniture_to_place.rotation.y += deg_to_rad(90)
 		current_rotation = (current_rotation+90) % 360
 		
@@ -348,4 +351,6 @@ func update_completed_goal():
 
 
 func _on_ui_back_level():
+	if get_node("/root/LevelCompleted").level_completed.find(level.level_index) == -1:
+		get_node("/root/LevelCompleted").level_completed.append(level.level_index)
 	return_level_choice.emit()

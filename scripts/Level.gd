@@ -22,6 +22,7 @@ static var FurnitureTypeNamePlural = {
 	FurnitureType.TV: "TV cabinets"
 }
 
+@export var level_index = 0
 @export var available_furnitures: Array[PackedScene]
 @export var needed_furnitures: Array[FurnitureType]
 @export_file var map
