@@ -76,9 +76,6 @@ func load_level(p_level: Level):
 			
 			placed_markers.append(case)
 			
-			# TODO: Replace avec un bon moyen de compter x2
-
-				
 			if char == "*":
 				case.type = Marker.MarkerType.GROUND
 				
