@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://bkbb5o2ojajxj"]
+[gd_scene load_steps=6 format=3 uid="uid://bkbb5o2ojajxj"]
 
 [ext_resource type="Script" path="res://scripts/Furniture.gd" id="1_8cuty"]
+[ext_resource type="Texture2D" uid="uid://bwd0k8o3j7p6p" path="res://ressources/images/furnitures/desk.png" id="2_0mqdm"]
 [ext_resource type="PackedScene" uid="uid://dbrp0xo6us2m3" path="res://ressources/meshes/bureau.tscn" id="2_4yt38"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_8s3ay"]
@@ -12,6 +13,7 @@ size = Vector3(0.8, 0.8, 1.8)
 [node name="Bed Big" type="Node3D"]
 script = ExtResource("1_8cuty")
 display_name = "Desk"
+cover = ExtResource("2_0mqdm")
 characteristics = Array[int]([4])
 
 [node name="Model" parent="." instance=ExtResource("2_4yt38")]

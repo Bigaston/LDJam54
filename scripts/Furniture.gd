@@ -2,6 +2,7 @@ extends Node3D
 class_name Furniture
 
 @export var display_name = ""
+@export var cover: Texture2D
 @export var characteristics: Array[Level.FurnitureType] = []
 
 func is_placement_valid():	

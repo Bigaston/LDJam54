@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://dn4yoyijgjmyf"]
+[gd_scene load_steps=5 format=3 uid="uid://dn4yoyijgjmyf"]
 
 [ext_resource type="Script" path="res://scripts/Furniture.gd" id="1_06pwk"]
 [ext_resource type="PackedScene" uid="uid://dvxroaccvfmic" path="res://ressources/meshes/canape.tscn" id="2_6l2yq"]
+[ext_resource type="Texture2D" uid="uid://bm2u4wvsrs3y4" path="res://ressources/images/furnitures/Couch.png" id="2_juy6d"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_8s3ay"]
 size = Vector3(0.8, 0.8, 3.8)
@@ -9,10 +10,11 @@ size = Vector3(0.8, 0.8, 3.8)
 [node name="Bed" type="Node3D"]
 script = ExtResource("1_06pwk")
 display_name = "Couch"
+cover = ExtResource("2_juy6d")
 characteristics = Array[int]([2])
 
 [node name="Model" parent="." instance=ExtResource("2_6l2yq")]
-transform = Transform3D(1.8, 0, 0, 0, 1.8, 0, 0, 0, 1.8, 0.1, 0.5, 1.5)
+transform = Transform3D(1.8, 0, 0, 0, 1.8, 0, 0, 0, 1.8, 0, 0.5, 1.5)
 
 [node name="Area3D" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 1.5)
