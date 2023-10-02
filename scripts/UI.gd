@@ -5,7 +5,7 @@ signal finish_level()
 signal back_level()
 
 func add_available_furniture(furniture: Furniture):
-	var container = $VBoxContainer
+	var container = $ScrollContainer2/VBoxContainer
 	
 	var button = Button.new()
 	button.text = furniture.display_name

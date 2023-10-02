@@ -1,12 +1,12 @@
-[gd_scene load_steps=11 format=3 uid="uid://dfwu8amna0lx"]
+[gd_scene load_steps=11 format=3 uid="uid://dimsd71dmifu2"]
 
 [ext_resource type="Script" path="res://scripts/main_game.gd" id="1_54dk4"]
 [ext_resource type="Material" uid="uid://cww4ay23o6m2h" path="res://ressources/shaders/transparent.tres" id="2_jimhx"]
 [ext_resource type="Material" uid="uid://c5jfd0ju8gwpx" path="res://ressources/shaders/transparent_error.tres" id="3_piebu"]
 [ext_resource type="PackedScene" uid="uid://4opaa4e07qep" path="res://objects/Marker.tscn" id="4_86uxt"]
 [ext_resource type="PackedScene" uid="uid://cibyu72gqcrwh" path="res://objects/SquareGround.tscn" id="5_tcetn"]
-[ext_resource type="PackedScene" path="res://objects/SquareGroundSuper.tscn" id="6_6vdp0"]
-[ext_resource type="Resource" uid="uid://b7loex8vuxaol" path="res://ressources/levels/Level4.tres" id="7_w5dod"]
+[ext_resource type="PackedScene" uid="uid://bwhachbg3twja" path="res://objects/SquareGroundSuper.tscn" id="6_6vdp0"]
+[ext_resource type="Resource" uid="uid://dgorb5e4qxlv2" path="res://ressources/levels/Level4.tres" id="7_486wk"]
 [ext_resource type="PackedScene" uid="uid://cmcvaxq3endno" path="res://objects/UI.tscn" id="8_omsnp"]
 
 [sub_resource type="Environment" id="Environment_tq2d1"]
@@ -25,7 +25,7 @@ transparent_error_mat = ExtResource("3_piebu")
 debug_case = ExtResource("4_86uxt")
 ground = ExtResource("5_tcetn")
 ground_super = ExtResource("6_6vdp0")
-current_level = ExtResource("7_w5dod")
+current_level = ExtResource("7_486wk")
 
 [node name="UI" parent="." instance=ExtResource("8_omsnp")]
 
