@@ -45,22 +45,22 @@ func _process(delta):
 	
 
 func _on_level_1_pressed():
-	var level = load("res://ressources/levels/Level1.tres")
+	var level = preload("res://ressources/levels/Level1.tres")
 	
 	choose_level.emit(level)
 
 func _on_level_2_pressed():
-	var level = load("res://ressources/levels/Level2.tres")
+	var level = preload("res://ressources/levels/Level2.tres")
 
 	choose_level.emit(level)
 
 func _on_level_3_pressed():
-	var level = load("res://ressources/levels/Level3.tres")
+	var level = preload("res://ressources/levels/Level3.tres")
 
 	choose_level.emit(level)
 
 
 func _on_level_4_pressed():
-	var level = load("res://ressources/levels/Level4.tres")
+	var level = preload("res://ressources/levels/Level4.tres")
 
 	choose_level.emit(level)

@@ -23,7 +23,7 @@ func add_needs(need: String):
 	var text = Label.new()
 	text.text = "❌" + need
 	text.name = "need_" + need
-	text.label_settings = load("res://ressources/fonts/text.tres")
+	text.label_settings = preload("res://ressources/fonts/text.tres")
 	
 	$ScrollContainer/TaskContainer.add_child(text)
 	$ScrollContainer/TaskContainer.move_child(text, $ScrollContainer/TaskContainer/Title.get_index() + 1)
