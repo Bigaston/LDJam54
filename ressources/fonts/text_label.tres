@@ -1,0 +1,8 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://spo0428o7vwa"]
+
+[ext_resource type="FontFile" uid="uid://bubx3qlkvyqru" path="res://ressources/fonts/MatchupPro.ttf" id="1_n52pq"]
+
+[resource]
+RichTextLabel/constants/line_separation = 3
+RichTextLabel/font_sizes/normal_font_size = 40
+RichTextLabel/fonts/normal_font = ExtResource("1_n52pq")

@@ -4,7 +4,7 @@
 
 [resource]
 font = ExtResource("1_oddfx")
-font_size = 40
+font_size = 60
 font_color = Color(0.92549, 0.352941, 0.0745098, 1)
 outline_size = 2
 shadow_size = 0

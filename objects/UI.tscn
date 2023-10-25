@@ -10,7 +10,7 @@
 
 [sub_resource type="LabelSettings" id="LabelSettings_mqiis"]
 font = ExtResource("2_h6g24")
-font_size = 20
+font_size = 30
 font_color = Color(0.92549, 0.352941, 0.0745098, 1)
 outline_size = 2
 shadow_size = 0
@@ -33,7 +33,7 @@ offset_right = 225.0
 offset_bottom = 100.0
 
 [node name="ScrollContainer2" type="ScrollContainer" parent="."]
-custom_minimum_size = Vector2(200, 0)
+custom_minimum_size = Vector2(400, 0)
 layout_mode = 1
 anchors_preset = 9
 anchor_bottom = 1.0
@@ -51,7 +51,7 @@ anchors_preset = 11
 anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -224.0
+offset_left = -300.0
 grow_horizontal = 0
 grow_vertical = 2
 
