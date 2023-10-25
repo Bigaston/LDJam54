@@ -29,8 +29,8 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = 638.0
-offset_bottom = 364.0
+offset_right = 14.0
+offset_bottom = 12.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_vertical = 3
@@ -40,10 +40,10 @@ stretch_mode = 6
 
 [node name="Level1" type="TextureButton" parent="Map"]
 layout_mode = 1
-offset_left = 922.0
-offset_top = 680.0
-offset_right = 1048.0
-offset_bottom = 801.0
+offset_left = 950.0
+offset_top = 698.0
+offset_right = 1050.0
+offset_bottom = 798.0
 texture_normal = ExtResource("3_kcvkr")
 ignore_texture_size = true
 stretch_mode = 5
@@ -51,10 +51,10 @@ script = ExtResource("5_ot1br")
 
 [node name="Level2" type="TextureButton" parent="Map"]
 layout_mode = 1
-offset_left = 1219.0
-offset_top = 317.0
-offset_right = 1345.0
-offset_bottom = 443.0
+offset_left = 1228.0
+offset_top = 350.0
+offset_right = 1328.0
+offset_bottom = 450.0
 texture_normal = ExtResource("3_kcvkr")
 ignore_texture_size = true
 stretch_mode = 5
@@ -62,10 +62,10 @@ script = ExtResource("5_ot1br")
 
 [node name="Level3" type="TextureButton" parent="Map"]
 layout_mode = 1
-offset_left = 1037.0
-offset_top = 399.0
-offset_right = 1163.0
-offset_bottom = 525.0
+offset_left = 1048.0
+offset_top = 442.0
+offset_right = 1148.0
+offset_bottom = 542.0
 texture_normal = ExtResource("3_kcvkr")
 ignore_texture_size = true
 stretch_mode = 5
@@ -73,10 +73,10 @@ script = ExtResource("5_ot1br")
 
 [node name="Level4" type="TextureButton" parent="Map"]
 layout_mode = 1
-offset_left = 896.0
-offset_top = 366.0
-offset_right = 1022.0
-offset_bottom = 492.0
+offset_left = 908.0
+offset_top = 405.0
+offset_right = 1008.0
+offset_bottom = 505.0
 texture_normal = ExtResource("3_kcvkr")
 ignore_texture_size = true
 stretch_mode = 5
