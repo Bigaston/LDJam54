@@ -7,4 +7,4 @@ You have to fullfill the needs of the your client but keep it simple! Your score
 
 Available on [itch.io](https://ilvegames.itch.io/emilien-in-paris)
 
-![Cover](./readme/Cover.png)
+![Cover](./.github/Cover.png)
